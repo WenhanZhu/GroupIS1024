@@ -1,7 +1,12 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using GroupIS1024.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<GroupIS1024Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("GroupIS1024Context") ?? throw new InvalidOperationException("Connection string 'GroupIS1024Context' not found.")));
 
 var app = builder.Build();
 

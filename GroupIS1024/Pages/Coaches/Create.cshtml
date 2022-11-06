@@ -1,0 +1,58 @@
+﻿@page
+@model GroupIS1024.Pages.Coaches.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Coach</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Coach.FirstName" class="control-label"></label>
+                <input asp-for="Coach.FirstName" class="form-control" />
+                <span asp-validation-for="Coach.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Coach.LastName" class="control-label"></label>
+                <input asp-for="Coach.LastName" class="form-control" />
+                <span asp-validation-for="Coach.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Coach.Username" class="control-label"></label>
+                <input asp-for="Coach.Username" class="form-control" />
+                <span asp-validation-for="Coach.Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Coach.State" class="control-label"></label>
+                <input asp-for="Coach.State" class="form-control" />
+                <span asp-validation-for="Coach.State" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Coach.Memberstatus" /> @Html.DisplayNameFor(model => model.Coach.Memberstatus)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Coach.TeamId" class="control-label"></label>
+                <select asp-for="Coach.TeamId" class ="form-control" asp-items="ViewBag.TeamId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
