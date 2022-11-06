@@ -5,12 +5,39 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<style>
+    .header {
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        margin-top: 30px;
+        margin-left: 10px
+    }
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
+    .main-header {
+        font-size: xx-large;
+        font-weight: 900;
+        font-style: italic
+    }
+
+    .sub-header {
+        font-size: large;
+        font-weight: 500;
+        font-style: normal;
+    }
+
+    .container {
+        background-color:dimgrey;
+    }
+</style>
+<div class="container">
+    <div class="header">
+        <div class="main-header">
+            <h1>Favorite Coaches Feed!</h1>
+        </div>
+        <div class="sub-header">
+            <h3>Find the feeds of your favourite Coaches here!</h3>
+        </div>
+    </div>
+
     <thead>
         <tr>
             <th>
@@ -35,32 +62,34 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Coach) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Username)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Memberstatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Team.TeamId)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.CoachId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.CoachId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.CoachId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Coach)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Memberstatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Team.TeamId)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.CoachId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.CoachId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.CoachId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
-</table>
+    </table>
+</div>
