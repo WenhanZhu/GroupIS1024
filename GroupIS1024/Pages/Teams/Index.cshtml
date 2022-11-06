@@ -4,33 +4,62 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    .header {
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        margin-top: 30px;
+        margin-left: 10px
+    }
 
-<h1>Index</h1>
+    .main-header {
+        font-size: x-large;
+        font-weight: 900;
+        font-style: italic
+    }
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Team[0].TeamName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Team) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TeamName)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.TeamId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.TeamId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.TeamId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    .sub-header {
+        font-size: large;
+        font-weight: 500;
+        font-style: normal;
+    }
+
+    .container {
+        background-color:cyan;
+    }
+</style>
+<div class="container">
+    <div class="header">
+        <div class="main-header">
+            <h1>Favorite Teams Feed!</h1>
+        </div>
+        <div class="sub-header">
+            <h3>Find the feeds of your favourite Teams here!</h3>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Team[0].TeamName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Team)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TeamName)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.TeamId">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.TeamId">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.TeamId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
