@@ -37,7 +37,7 @@
             <h3>Find the feeds of your favourite Coaches here!</h3>
         </div>
     </div>
-
+    <table>
     <thead>
         <tr>
             <th>
@@ -53,7 +53,7 @@
                 @Html.DisplayNameFor(model => model.Coach[0].State)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Coach[0].Memberstatus)
+                @Html.DisplayNameFor(model => model.Coach[0].IsMemberstatus)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Coach[0].Team)
@@ -63,7 +63,7 @@
     </thead>
     <tbody>
         @foreach (var item in Model.Coach)
-        {
+         {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.FirstName)
@@ -78,7 +78,7 @@
                     @Html.DisplayFor(modelItem => item.State)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Memberstatus)
+                    @Html.DisplayFor(modelItem => item.IsMemberstatus)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Team.TeamId)
@@ -91,5 +91,5 @@
             </tr>
         }
     </tbody>
-    </table>
+   </table>
 </div>

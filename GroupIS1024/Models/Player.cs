@@ -25,12 +25,11 @@ namespace GroupIS1024.Models
         public int Experience { get; set; }
 
 
-        public string University { get; set; }
+        public string? University { get; set; }
 
         public DateTime DateOfBirth { get; set; }
 
-        public Team Team { get; set; }
-
+        public Team? Team { get; set; }
 
         public int TeamId { get; set; }
     }
