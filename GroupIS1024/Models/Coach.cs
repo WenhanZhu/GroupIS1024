@@ -1,18 +1,28 @@
-﻿namespace GroupIS1024.Models
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace GroupIS1024.Models
 {
     public class Coach
+
     {
         public int CoachId { get; set; }
 
+        [DisplayName("First Name")]
         public string FirstName { get; set; }
 
+        [DisplayName("Last Name")]
         public string LastName { get; set; }
 
+        [DisplayName("Username")]
         public string Username { get; set; }
 
+        [DisplayName("State")]
         public string State { get; set; }
 
-        public Boolean Memberstatus { get; set; }
+        [DisplayName("Member Status")]
+        public bool? IsMemberstatus { get; set; }
+
 
         public Team Team { get; set; }
 
