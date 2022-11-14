@@ -15,13 +15,13 @@ namespace GroupIS1024.Models
         public string LastName { get; set; }
 
         [DisplayName("Username")]
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         [DisplayName("State")]
         public string State { get; set; }
 
         [DisplayName("Member Status")]
-        public bool? IsMemberstatus { get; set; }
+        public bool? IsMemberStatus { get; set; }
 
 
         public Team Team { get; set; }
