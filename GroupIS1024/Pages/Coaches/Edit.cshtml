@@ -25,9 +25,9 @@
                 <span asp-validation-for="Coach.LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Coach.Username" class="control-label"></label>
-                <input asp-for="Coach.Username" class="form-control" />
-                <span asp-validation-for="Coach.Username" class="text-danger"></span>
+                <label asp-for="Coach.UserName" class="control-label"></label>
+                <input asp-for="Coach.UserName" class="form-control" />
+                <span asp-validation-for="Coach.UserName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Coach.State" class="control-label"></label>
@@ -36,7 +36,7 @@
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Coach.IsMemberstatus" /> @Html.DisplayNameFor(model => model.Coach.IsMemberstatus)
+                    <input class="form-check-input" asp-for="Coach.IsMemberStatus" /> @Html.DisplayNameFor(model => model.Coach.IsMemberStatus)
                 </label>
             </div>
             <div class="form-group">
