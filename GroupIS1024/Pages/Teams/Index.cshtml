@@ -24,7 +24,7 @@
     }
 
     .container {
-        background-color:cyan;
+        background-color: #c0c0c0;
     }
 </style>
 <div class="container">
@@ -37,11 +37,20 @@
         </div>
     </div>
 
-    <table class="table">
+    <table class="table border-primary table-hover">
         <thead>
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.Team[0].TeamId)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Team[0].TeamName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Team[0].Coaches)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Team[0].Players)
                 </th>
                 <th></th>
             </tr>
@@ -51,7 +60,16 @@
             {
                 <tr>
                     <td>
+                        @Html.DisplayFor(modelItem => item.TeamId)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.TeamName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Coaches)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Players)
                     </td>
                     <td>
                         <a asp-page="./Edit" asp-route-id="@item.TeamId">Edit</a> |
