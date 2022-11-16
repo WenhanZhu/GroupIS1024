@@ -8,11 +8,12 @@ namespace GroupIS1024.Models
 
         public int TeamId { get; set; }
 
+        [DisplayName("Team Name")]
         public string TeamName { get; set; }
 
-        public List<Coach> Coaches { get; set; }
+        public List<Coach>? Coaches { get; set; }
 
-        public List<Player> Players { get; set; }
+        public List<Player>? Players { get; set; }
 
 
     }
