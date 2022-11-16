@@ -1,0 +1,56 @@
+﻿@page
+@model GroupIS1024.Pages.StatsLeadersModel
+@{
+    ViewData["Title"] = "Leaderboard";
+    Leaderboard leaderboards = (Leaderboard)ViewData["Leadboards"];
+}
+
+<div class="text-center">
+    
+    <h1 class="display-4">Welcome to brand</h1>
+    <p>Catalog your plants, where they are, when they have been watered and fertilized.</p>
+    <p>We're glad you're here!</p>
+    <div class="container align-content-center">
+        <div class="align-content-center">
+            <center><img width="700" height="300" src="~/Images/recipe_image.png"></center>
+        </div>
+
+
+
+
+
+        <div class="search-bar">
+
+
+
+            <form action="" method="get" class="form-online">
+                <center><input asp-for="InitLeaderboardQuery" name="LeaderboardQuery" id="LeaderboardQuery" class="form-control mr-sm-2 mb-2" placeholder="Search stats.." /></center>
+                <center><button type="Submit" class="btn btn-primary mb-2">Search</button></center>
+            </form>
+        </div>
+        <div class="buttons text-center">
+            <div class="btn-toolbar" role="group" aria-label="...">
+            </div>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>DispalyName</th>
+
+        </tr>
+        @{
+            foreach (Category category in leaderboards.categories)
+            {
+                <tr>
+                    <td>@category.Name</td>
+                    <td>@category.DisplayName</td>
+
+                </tr>
+            }
+        }
+
+    </table>
+
+</div>
+
