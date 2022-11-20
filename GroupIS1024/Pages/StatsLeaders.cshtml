@@ -27,8 +27,19 @@
             <th>Specimen ID</th>
             <th>Latitude</th>
             <th>Longitude</th>
-
         </tr>
+            @{
+                foreach (FranchiseTeam franchiseteam in franchises.FranchisTeams)
+                {
+                    <tr>
+                        <td>@franchiseteam.Location</td>
+                        <td>@franchiseteam.Nickname</td>
+                        <td>@franchiseteam.Record</td>
+                        <td>@franchiseteam.AlternateColor</td>
+
+                    </tr>
+                }
+            }
  </table>
 </div>
 </body>

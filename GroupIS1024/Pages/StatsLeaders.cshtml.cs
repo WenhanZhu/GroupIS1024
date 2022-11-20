@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
+using System.Net;
 
 namespace GroupIS1024.Pages
 {
@@ -12,15 +15,21 @@ namespace GroupIS1024.Pages
         {
             _logger = logger;
         }
-
-        public string Query { get; set; }
-
-        public async Task OnGetAsync(string query)
+        public void OnGet()
         {
+            var task = client.GetAsync("https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/1");
+            HttpResponseMessage result = task.Result;
+            List<FranchiseTeam> franchiseteams = new List<FranchiseTeam>();
+            if (result.IsSuccessStatusCode)
+            {
+                Task<string> readString = result.Content.ReadAsStringAsync();
+                string jsonString = readString.Result;
+                franchiseteams = FranchiseTeam.FromString(jsonString);
+            }
+            ViewData["Franchises"] = franchiseteams;
+        }
 
-            Query = query;
-            HttpRequestMessage request = new HttpRequestMessage();
-            request.RequestUri = new Uri("https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/1" + query);
-            request.Method = HttpMethod.Get;
-            HttpResponseMessage response = await client.SendAsync(request);
-            Team
+
+        }
+    }
+
