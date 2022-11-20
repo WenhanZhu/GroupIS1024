@@ -29,7 +29,7 @@ namespace GroupIS1024.Models
 
         public DateTime DateOfBirth { get; set; }
 
-        public Team Team { get; set; }
+        public Team? Team { get; set; }
 
 
         public int TeamId { get; set; }
