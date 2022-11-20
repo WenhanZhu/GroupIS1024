@@ -2,6 +2,7 @@
 @model IndexModel
 @{
     ViewData["Title"] = "FantasyFootball";
+    List<Franchise> franchises = (List<Franchise>) ViewData["Franchises"];
 }
 <html>
 <head>
@@ -46,7 +47,7 @@
     <!-- Intro-->
     <div class="intro text-col">
         <h1>FANTASTYFOODBALL</h1>
-        <h1>The best platform for your favourite foodball team and player.</h1><br />
+        <h1>The best platform for your favourite foodball team and player.</h1><br /
         <p>
             Do you want to know more about your favourite foodball team and players? <br />
             With FantasyFootball’s easy-to-use platform, you can find them with few click!<br />

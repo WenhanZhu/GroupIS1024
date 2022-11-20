@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace GroupIS1024.Pages
 {
-    public class IndexModel : PageModel
+    public class NFLOverviewModel : PageModel
     {
         static readonly HttpClient client = new HttpClient();
         private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public NFLOverviewModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
         }
