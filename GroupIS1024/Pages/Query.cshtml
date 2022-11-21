@@ -1,8 +1,8 @@
 ﻿@page
 @model QueryModel
 @{
-        ViewData["Title"] = "Teams";
-    Franchise franchises = (Franchise)ViewData["Recipes"];
+        //ViewData["Title"] = "Teams";
+    //Franchise franchises = (Franchise)ViewData["Recipes"];
 }
 
 <html>
@@ -47,14 +47,14 @@
             <th>Latitude</th>
             <th>Longitude</th>
         </tr>
-            @{
-                foreach (Sport sport in franchises.Sports)
+            //@{
+                //foreach (Sport sport in franchises.Sports)
                 {
                     <tr>
-                        <td>@sport.Id</td>
-                        <td>@sport.Name</td>
-                        <td>@sport.Uid</td>
-                        <td>@sport.Slug</td>
+                        //<td>sport.Id</td>
+                        //<td>sport.Name</td>
+                        //<td>sport.Uid</td>
+                        //<td>sport.Slug</td>
                 </tr>
             }
         }

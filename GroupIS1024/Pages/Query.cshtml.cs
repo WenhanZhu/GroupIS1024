@@ -45,7 +45,7 @@ namespace GroupIS1024.Pages
                 string jsonString1 = readString1.Result;
 
                 System.Diagnostics.Debug.WriteLine("Value: " + jsonString1);
-                franchises = Franchise.FromJson(jsonString1);
+                //franchises = Franchise.FromJson(jsonString1);
             }
 
             ViewData["Franchises"] = franchises;

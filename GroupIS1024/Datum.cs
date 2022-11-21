@@ -4,7 +4,7 @@
 //
 //    using GroupIS1024;
 //
-//    var franchise = Franchise.FromJson(jsonString);
+//    var datum = Datum.FromJson(jsonString);
 
 namespace GroupIS1024
 {
@@ -15,7 +15,16 @@ namespace GroupIS1024
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    public partial class Franchise
+    public partial class Datum
+    {
+        [JsonProperty("data")]
+        public List<DatumElement> Data { get; set; }
+
+        [JsonProperty("meta")]
+        public Meta Meta { get; set; }
+    }
+
+    public partial class DatumElement
     {
         [JsonProperty("id")]
         public long Id { get; set; }
@@ -39,16 +48,34 @@ namespace GroupIS1024
         public string Name { get; set; }
     }
 
+    public partial class Meta
+    {
+        [JsonProperty("total_pages")]
+        public long TotalPages { get; set; }
+
+        [JsonProperty("current_page")]
+        public long CurrentPage { get; set; }
+
+        [JsonProperty("next_page")]
+        public object NextPage { get; set; }
+
+        [JsonProperty("per_page")]
+        public long PerPage { get; set; }
+
+        [JsonProperty("total_count")]
+        public long TotalCount { get; set; }
+    }
+
     public enum Conference { East, West };
 
-    public partial class Franchise
+    public partial class Datum
     {
-        public static List<Franchise> FromJson(string json) => JsonConvert.DeserializeObject<List<Franchise>>(json, GroupIS1024.Converter.Settings);
+        public static Datum FromJson(string json) => JsonConvert.DeserializeObject<Datum>(json, GroupIS1024.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this List<Franchise> self) => JsonConvert.SerializeObject(self, GroupIS1024.Converter.Settings);
+        public static string ToJson(this Datum self) => JsonConvert.SerializeObject(self, GroupIS1024.Converter.Settings);
     }
 
     internal static class Converter
