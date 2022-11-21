@@ -17,14 +17,14 @@ namespace GroupIS1024.Pages
         {
             var task = client.GetAsync("https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams");
             HttpResponseMessage result = task.Result;
-            List<Franchise> franchises = new List<Franchise>();
+            List<TeamTeam> franchises = new List<TeamTeame>();
             if (result.IsSuccessStatusCode)
             {
                 Task<string> readString = result.Content.ReadAsStringAsync();
                 string jsonString = readString.Result;
-                franchises = Franchise.FromJson(jsonString);
+                franchises = TeamTeam.FromJson(jsonString);
             }
-            ViewData["Franchises"] = franchises;
+            ViewData["Franchises"] =franchises;
         }
     }
 }

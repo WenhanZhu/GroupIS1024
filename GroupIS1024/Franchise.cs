@@ -17,11 +17,61 @@ namespace GroupIS1024
 
     public partial class Franchise
     {
-        [JsonProperty("team")]
-        public FranchiseTeam Team { get; set; }
+        [JsonProperty("sports")]
+        public List<Sport> Sports { get; set; }
     }
 
-    public partial class FranchiseTeam
+    public partial class Sport
+    {
+        [JsonProperty("id")]
+        [JsonConverter(typeof(ParseStringConverter))]
+        public long Id { get; set; }
+
+        [JsonProperty("uid")]
+        public string Uid { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("slug")]
+        public string Slug { get; set; }
+
+        [JsonProperty("leagues")]
+        public List<League> Leagues { get; set; }
+    }
+
+    public partial class League
+    {
+        [JsonProperty("id")]
+        [JsonConverter(typeof(ParseStringConverter))]
+        public long Id { get; set; }
+
+        [JsonProperty("uid")]
+        public string Uid { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("abbreviation")]
+        public string Abbreviation { get; set; }
+
+        [JsonProperty("shortName")]
+        public string ShortName { get; set; }
+
+        [JsonProperty("slug")]
+        public string Slug { get; set; }
+
+        [JsonProperty("teams")]
+        public List<TeamElement> Teams { get; set; }
+    }
+
+    public partial class TeamElement
+    {
+        [JsonProperty("team")]
+        public TeamTeam Team { get; set; }
+    }
+
+    public partial class TeamTeam
     {
         [JsonProperty("id")]
         [JsonConverter(typeof(ParseStringConverter))]
@@ -33,15 +83,6 @@ namespace GroupIS1024
         [JsonProperty("slug")]
         public string Slug { get; set; }
 
-        [JsonProperty("location")]
-        public string Location { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("nickname")]
-        public string Nickname { get; set; }
-
         [JsonProperty("abbreviation")]
         public string Abbreviation { get; set; }
 
@@ -50,6 +91,15 @@ namespace GroupIS1024
 
         [JsonProperty("shortDisplayName")]
         public string ShortDisplayName { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("nickname")]
+        public string Nickname { get; set; }
+
+        [JsonProperty("location")]
+        public string Location { get; set; }
 
         [JsonProperty("color")]
         public string Color { get; set; }
@@ -60,178 +110,32 @@ namespace GroupIS1024
         [JsonProperty("isActive")]
         public bool IsActive { get; set; }
 
+        [JsonProperty("isAllStar")]
+        public bool IsAllStar { get; set; }
+
         [JsonProperty("logos")]
         public List<Logo> Logos { get; set; }
 
-        [JsonProperty("record")]
-        public TeamRecord Record { get; set; }
-
-        [JsonProperty("groups")]
-        public Groups Groups { get; set; }
-
         [JsonProperty("links")]
-        public List<NextEventLink> Links { get; set; }
-
-        [JsonProperty("franchise")]
-        public FranchiseClass Franchise { get; set; }
-
-        [JsonProperty("nextEvent")]
-        public List<NextEvent> NextEvent { get; set; }
-
-        [JsonProperty("standingSummary")]
-        public string StandingSummary { get; set; }
+        public List<Link> Links { get; set; }
     }
 
-    public partial class FranchiseClass
-    {
-        [JsonProperty("$ref")]
-        public Uri Ref { get; set; }
-
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-
-        [JsonProperty("uid")]
-        public string Uid { get; set; }
-
-        [JsonProperty("slug")]
-        public string Slug { get; set; }
-
-        [JsonProperty("location")]
-        public string Location { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("nickname")]
-        public string Nickname { get; set; }
-
-        [JsonProperty("abbreviation")]
-        public string Abbreviation { get; set; }
-
-        [JsonProperty("displayName")]
-        public string DisplayName { get; set; }
-
-        [JsonProperty("shortDisplayName")]
-        public string ShortDisplayName { get; set; }
-
-        [JsonProperty("color")]
-        public string Color { get; set; }
-
-        [JsonProperty("isActive")]
-        public bool IsActive { get; set; }
-
-        [JsonProperty("venue")]
-        public FranchiseVenue Venue { get; set; }
-
-        [JsonProperty("team")]
-        public FranchiseTeamClass Team { get; set; }
-    }
-
-    public partial class FranchiseTeamClass
-    {
-        [JsonProperty("$ref")]
-        public Uri Ref { get; set; }
-    }
-
-    public partial class FranchiseVenue
-    {
-        [JsonProperty("$ref")]
-        public Uri Ref { get; set; }
-
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-
-        [JsonProperty("fullName")]
-        public string FullName { get; set; }
-
-        [JsonProperty("address")]
-        public Address Address { get; set; }
-
-        [JsonProperty("capacity")]
-        public long Capacity { get; set; }
-
-        [JsonProperty("grass")]
-        public bool Grass { get; set; }
-
-        [JsonProperty("indoor")]
-        public bool Indoor { get; set; }
-
-        [JsonProperty("images")]
-        public List<Logo> Images { get; set; }
-    }
-
-    public partial class Address
-    {
-        [JsonProperty("city")]
-        public string City { get; set; }
-
-        [JsonProperty("state")]
-        public string State { get; set; }
-
-        [JsonProperty("zipCode")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long ZipCode { get; set; }
-    }
-
-    public partial class Logo
-    {
-        [JsonProperty("href")]
-        public Uri Href { get; set; }
-
-        [JsonProperty("width")]
-        public long Width { get; set; }
-
-        [JsonProperty("height")]
-        public long Height { get; set; }
-
-        [JsonProperty("alt")]
-        public string Alt { get; set; }
-
-        [JsonProperty("rel")]
-        public List<string> Rel { get; set; }
-
-        [JsonProperty("lastUpdated", NullValueHandling = NullValueHandling.Ignore)]
-        public LastUpdated? LastUpdated { get; set; }
-    }
-
-    public partial class Groups
-    {
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-
-        [JsonProperty("parent")]
-        public Parent Parent { get; set; }
-
-        [JsonProperty("isConference")]
-        public bool IsConference { get; set; }
-    }
-
-    public partial class Parent
-    {
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-    }
-
-    public partial class NextEventLink
+    public partial class Link
     {
         [JsonProperty("language")]
         public Language Language { get; set; }
 
         [JsonProperty("rel")]
-        public List<string> Rel { get; set; }
+        public List<LinkRel> Rel { get; set; }
 
         [JsonProperty("href")]
-        public string Href { get; set; }
+        public Uri Href { get; set; }
 
         [JsonProperty("text")]
-        public string Text { get; set; }
+        public Text Text { get; set; }
 
-        [JsonProperty("shortText")]
-        public string ShortText { get; set; }
+        [JsonProperty("shortText", NullValueHandling = NullValueHandling.Ignore)]
+        public Text? ShortText { get; set; }
 
         [JsonProperty("isExternal")]
         public bool IsExternal { get; set; }
@@ -240,426 +144,31 @@ namespace GroupIS1024
         public bool IsPremium { get; set; }
     }
 
-    public partial class NextEvent
+    public partial class Logo
     {
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-
-        [JsonProperty("date")]
-        public string Date { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("shortName")]
-        public string ShortName { get; set; }
-
-        [JsonProperty("season")]
-        public Season Season { get; set; }
-
-        [JsonProperty("seasonType")]
-        public SeasonType SeasonType { get; set; }
-
-        [JsonProperty("week")]
-        public Week Week { get; set; }
-
-        [JsonProperty("timeValid")]
-        public bool TimeValid { get; set; }
-
-        [JsonProperty("competitions")]
-        public List<Competition> Competitions { get; set; }
-
-        [JsonProperty("links")]
-        public List<NextEventLink> Links { get; set; }
-    }
-
-    public partial class Competition
-    {
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-
-        [JsonProperty("date")]
-        public string Date { get; set; }
-
-        [JsonProperty("attendance")]
-        public long Attendance { get; set; }
-
-        [JsonProperty("type")]
-        public CompetitionType Type { get; set; }
-
-        [JsonProperty("timeValid")]
-        public bool TimeValid { get; set; }
-
-        [JsonProperty("neutralSite")]
-        public bool NeutralSite { get; set; }
-
-        [JsonProperty("boxscoreAvailable")]
-        public bool BoxscoreAvailable { get; set; }
-
-        [JsonProperty("ticketsAvailable")]
-        public bool TicketsAvailable { get; set; }
-
-        [JsonProperty("venue")]
-        public CompetitionVenue Venue { get; set; }
-
-        [JsonProperty("competitors")]
-        public List<Competitor> Competitors { get; set; }
-
-        [JsonProperty("notes")]
-        public List<object> Notes { get; set; }
-
-        [JsonProperty("broadcasts")]
-        public List<Broadcast> Broadcasts { get; set; }
-
-        [JsonProperty("status")]
-        public Status Status { get; set; }
-    }
-
-    public partial class Broadcast
-    {
-        [JsonProperty("type")]
-        public BroadcastType Type { get; set; }
-
-        [JsonProperty("market")]
-        public Market Market { get; set; }
-
-        [JsonProperty("media")]
-        public Media Media { get; set; }
-
-        [JsonProperty("lang")]
-        public string Lang { get; set; }
-
-        [JsonProperty("region")]
-        public string Region { get; set; }
-    }
-
-    public partial class Market
-    {
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-
-        [JsonProperty("type")]
-        public string Type { get; set; }
-    }
-
-    public partial class Media
-    {
-        [JsonProperty("shortName")]
-        public string ShortName { get; set; }
-    }
-
-    public partial class BroadcastType
-    {
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-
-        [JsonProperty("shortName")]
-        public string ShortName { get; set; }
-    }
-
-    public partial class Competitor
-    {
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-
-        [JsonProperty("type")]
-        public string Type { get; set; }
-
-        [JsonProperty("order")]
-        public long Order { get; set; }
-
-        [JsonProperty("homeAway")]
-        public string HomeAway { get; set; }
-
-        [JsonProperty("winner")]
-        public bool Winner { get; set; }
-
-        [JsonProperty("team")]
-        public CompetitorTeam Team { get; set; }
-
-        [JsonProperty("score")]
-        public Score Score { get; set; }
-
-        [JsonProperty("leaders", NullValueHandling = NullValueHandling.Ignore)]
-        public List<CompetitorLeader> Leaders { get; set; }
-
-        [JsonProperty("record")]
-        public List<RecordElement> Record { get; set; }
-    }
-
-    public partial class CompetitorLeader
-    {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("displayName")]
-        public string DisplayName { get; set; }
-
-        [JsonProperty("abbreviation")]
-        public string Abbreviation { get; set; }
-
-        [JsonProperty("leaders", NullValueHandling = NullValueHandling.Ignore)]
-        public List<LeaderLeader> Leaders { get; set; }
-    }
-
-    public partial class LeaderLeader
-    {
-        [JsonProperty("displayValue")]
-        public string DisplayValue { get; set; }
-
-        [JsonProperty("value")]
-        public double Value { get; set; }
-
-        [JsonProperty("athlete")]
-        public Athlete Athlete { get; set; }
-    }
-
-    public partial class Athlete
-    {
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-
-        [JsonProperty("lastName")]
-        public string LastName { get; set; }
-
-        [JsonProperty("displayName")]
-        public string DisplayName { get; set; }
-
-        [JsonProperty("shortName")]
-        public string ShortName { get; set; }
-
-        [JsonProperty("links")]
-        public List<AthleteLink> Links { get; set; }
-    }
-
-    public partial class AthleteLink
-    {
-        [JsonProperty("rel")]
-        public List<Rel> Rel { get; set; }
-
         [JsonProperty("href")]
         public Uri Href { get; set; }
-    }
 
-    public partial class RecordElement
-    {
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
+        [JsonProperty("alt")]
+        public string Alt { get; set; }
 
-        [JsonProperty("abbreviation", NullValueHandling = NullValueHandling.Ignore)]
-        public string Abbreviation { get; set; }
-
-        [JsonProperty("displayName")]
-        public string DisplayName { get; set; }
-
-        [JsonProperty("shortDisplayName")]
-        public string ShortDisplayName { get; set; }
-
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("type")]
-        public string Type { get; set; }
-
-        [JsonProperty("displayValue")]
-        public string DisplayValue { get; set; }
-    }
-
-    public partial class Score
-    {
-        [JsonProperty("value")]
-        public long Value { get; set; }
-
-        [JsonProperty("displayValue")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long DisplayValue { get; set; }
-    }
-
-    public partial class CompetitorTeam
-    {
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-
-        [JsonProperty("location")]
-        public string Location { get; set; }
-
-        [JsonProperty("nickname")]
-        public string Nickname { get; set; }
-
-        [JsonProperty("abbreviation")]
-        public string Abbreviation { get; set; }
-
-        [JsonProperty("displayName")]
-        public string DisplayName { get; set; }
-
-        [JsonProperty("shortDisplayName")]
-        public string ShortDisplayName { get; set; }
-
-        [JsonProperty("logos")]
-        public List<Logo> Logos { get; set; }
-
-        [JsonProperty("links")]
-        public List<PurpleLink> Links { get; set; }
-    }
-
-    public partial class PurpleLink
-    {
         [JsonProperty("rel")]
-        public List<string> Rel { get; set; }
+        public List<LogoRel> Rel { get; set; }
 
-        [JsonProperty("href")]
-        public string Href { get; set; }
+        [JsonProperty("width")]
+        public long Width { get; set; }
 
-        [JsonProperty("text")]
-        public string Text { get; set; }
+        [JsonProperty("height")]
+        public long Height { get; set; }
     }
 
-    public partial class Status
-    {
-        [JsonProperty("clock")]
-        public long Clock { get; set; }
+    public enum Language { En, EnUs };
 
-        [JsonProperty("displayClock")]
-        public string DisplayClock { get; set; }
+    public enum LinkRel { Clubhouse, Depthchart, Desktop, Roster, Schedule, Stats, Team, Tickets };
 
-        [JsonProperty("period")]
-        public long Period { get; set; }
+    public enum Text { Clubhouse, DepthChart, Roster, Schedule, Statistics, Tickets };
 
-        [JsonProperty("type")]
-        public StatusType Type { get; set; }
-    }
-
-    public partial class StatusType
-    {
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("state")]
-        public string State { get; set; }
-
-        [JsonProperty("completed")]
-        public bool Completed { get; set; }
-
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("detail")]
-        public string Detail { get; set; }
-
-        [JsonProperty("shortDetail")]
-        public string ShortDetail { get; set; }
-    }
-
-    public partial class CompetitionType
-    {
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-
-        [JsonProperty("text")]
-        public string Text { get; set; }
-
-        [JsonProperty("abbreviation")]
-        public string Abbreviation { get; set; }
-
-        [JsonProperty("slug")]
-        public string Slug { get; set; }
-
-        [JsonProperty("type")]
-        public string Type { get; set; }
-    }
-
-    public partial class CompetitionVenue
-    {
-        [JsonProperty("fullName")]
-        public string FullName { get; set; }
-
-        [JsonProperty("address")]
-        public Address Address { get; set; }
-    }
-
-    public partial class Season
-    {
-        [JsonProperty("year")]
-        public long Year { get; set; }
-
-        [JsonProperty("displayName")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long DisplayName { get; set; }
-    }
-
-    public partial class SeasonType
-    {
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-
-        [JsonProperty("type")]
-        public long Type { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("abbreviation")]
-        public string Abbreviation { get; set; }
-    }
-
-    public partial class Week
-    {
-        [JsonProperty("number")]
-        public long Number { get; set; }
-
-        [JsonProperty("text")]
-        public string Text { get; set; }
-    }
-
-    public partial class TeamRecord
-    {
-        [JsonProperty("items")]
-        public List<Item> Items { get; set; }
-    }
-
-    public partial class Item
-    {
-        [JsonProperty("type")]
-        public string Type { get; set; }
-
-        [JsonProperty("summary")]
-        public string Summary { get; set; }
-
-        [JsonProperty("stats")]
-        public List<Stat> Stats { get; set; }
-
-        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
-        public string Description { get; set; }
-    }
-
-    public partial class Stat
-    {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("value")]
-        public double Value { get; set; }
-    }
-
-    public enum LastUpdated { The20180605T1211Z };
-
-    public enum Language { EnUs };
-
-    public enum Rel { Athlete, Bio, Desktop, Gamelog, News, Overview, Playercard, Splits, Stats };
+    public enum LogoRel { Dark, Default, Full, Scoreboard };
 
     public partial class Franchise
     {
@@ -679,9 +188,10 @@ namespace GroupIS1024
             DateParseHandling = DateParseHandling.None,
             Converters =
             {
-                LastUpdatedConverter.Singleton,
                 LanguageConverter.Singleton,
-                RelConverter.Singleton,
+                LinkRelConverter.Singleton,
+                TextConverter.Singleton,
+                LogoRelConverter.Singleton,
                 new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
             },
         };
@@ -718,40 +228,6 @@ namespace GroupIS1024
         public static readonly ParseStringConverter Singleton = new ParseStringConverter();
     }
 
-    internal class LastUpdatedConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(LastUpdated) || t == typeof(LastUpdated?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            if (value == "2018-06-05T12:11Z")
-            {
-                return LastUpdated.The20180605T1211Z;
-            }
-            throw new Exception("Cannot unmarshal type LastUpdated");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (LastUpdated)untypedValue;
-            if (value == LastUpdated.The20180605T1211Z)
-            {
-                serializer.Serialize(writer, "2018-06-05T12:11Z");
-                return;
-            }
-            throw new Exception("Cannot marshal type LastUpdated");
-        }
-
-        public static readonly LastUpdatedConverter Singleton = new LastUpdatedConverter();
-    }
-
     internal class LanguageConverter : JsonConverter
     {
         public override bool CanConvert(Type t) => t == typeof(Language) || t == typeof(Language?);
@@ -760,9 +236,12 @@ namespace GroupIS1024
         {
             if (reader.TokenType == JsonToken.Null) return null;
             var value = serializer.Deserialize<string>(reader);
-            if (value == "en-US")
+            switch (value)
             {
-                return Language.EnUs;
+                case "en":
+                    return Language.En;
+                case "en-US":
+                    return Language.EnUs;
             }
             throw new Exception("Cannot unmarshal type Language");
         }
@@ -775,10 +254,14 @@ namespace GroupIS1024
                 return;
             }
             var value = (Language)untypedValue;
-            if (value == Language.EnUs)
+            switch (value)
             {
-                serializer.Serialize(writer, "en-US");
-                return;
+                case Language.En:
+                    serializer.Serialize(writer, "en");
+                    return;
+                case Language.EnUs:
+                    serializer.Serialize(writer, "en-US");
+                    return;
             }
             throw new Exception("Cannot marshal type Language");
         }
@@ -786,9 +269,9 @@ namespace GroupIS1024
         public static readonly LanguageConverter Singleton = new LanguageConverter();
     }
 
-    internal class RelConverter : JsonConverter
+    internal class LinkRelConverter : JsonConverter
     {
-        public override bool CanConvert(Type t) => t == typeof(Rel) || t == typeof(Rel?);
+        public override bool CanConvert(Type t) => t == typeof(LinkRel) || t == typeof(LinkRel?);
 
         public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
         {
@@ -796,26 +279,24 @@ namespace GroupIS1024
             var value = serializer.Deserialize<string>(reader);
             switch (value)
             {
-                case "athlete":
-                    return Rel.Athlete;
-                case "bio":
-                    return Rel.Bio;
+                case "clubhouse":
+                    return LinkRel.Clubhouse;
+                case "depthchart":
+                    return LinkRel.Depthchart;
                 case "desktop":
-                    return Rel.Desktop;
-                case "gamelog":
-                    return Rel.Gamelog;
-                case "news":
-                    return Rel.News;
-                case "overview":
-                    return Rel.Overview;
-                case "playercard":
-                    return Rel.Playercard;
-                case "splits":
-                    return Rel.Splits;
+                    return LinkRel.Desktop;
+                case "roster":
+                    return LinkRel.Roster;
+                case "schedule":
+                    return LinkRel.Schedule;
                 case "stats":
-                    return Rel.Stats;
+                    return LinkRel.Stats;
+                case "team":
+                    return LinkRel.Team;
+                case "tickets":
+                    return LinkRel.Tickets;
             }
-            throw new Exception("Cannot unmarshal type Rel");
+            throw new Exception("Cannot unmarshal type LinkRel");
         }
 
         public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
@@ -825,40 +306,150 @@ namespace GroupIS1024
                 serializer.Serialize(writer, null);
                 return;
             }
-            var value = (Rel)untypedValue;
+            var value = (LinkRel)untypedValue;
             switch (value)
             {
-                case Rel.Athlete:
-                    serializer.Serialize(writer, "athlete");
+                case LinkRel.Clubhouse:
+                    serializer.Serialize(writer, "clubhouse");
                     return;
-                case Rel.Bio:
-                    serializer.Serialize(writer, "bio");
+                case LinkRel.Depthchart:
+                    serializer.Serialize(writer, "depthchart");
                     return;
-                case Rel.Desktop:
+                case LinkRel.Desktop:
                     serializer.Serialize(writer, "desktop");
                     return;
-                case Rel.Gamelog:
-                    serializer.Serialize(writer, "gamelog");
+                case LinkRel.Roster:
+                    serializer.Serialize(writer, "roster");
                     return;
-                case Rel.News:
-                    serializer.Serialize(writer, "news");
+                case LinkRel.Schedule:
+                    serializer.Serialize(writer, "schedule");
                     return;
-                case Rel.Overview:
-                    serializer.Serialize(writer, "overview");
-                    return;
-                case Rel.Playercard:
-                    serializer.Serialize(writer, "playercard");
-                    return;
-                case Rel.Splits:
-                    serializer.Serialize(writer, "splits");
-                    return;
-                case Rel.Stats:
+                case LinkRel.Stats:
                     serializer.Serialize(writer, "stats");
                     return;
+                case LinkRel.Team:
+                    serializer.Serialize(writer, "team");
+                    return;
+                case LinkRel.Tickets:
+                    serializer.Serialize(writer, "tickets");
+                    return;
             }
-            throw new Exception("Cannot marshal type Rel");
+            throw new Exception("Cannot marshal type LinkRel");
         }
 
-        public static readonly RelConverter Singleton = new RelConverter();
+        public static readonly LinkRelConverter Singleton = new LinkRelConverter();
+    }
+
+    internal class TextConverter : JsonConverter
+    {
+        public override bool CanConvert(Type t) => t == typeof(Text) || t == typeof(Text?);
+
+        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
+        {
+            if (reader.TokenType == JsonToken.Null) return null;
+            var value = serializer.Deserialize<string>(reader);
+            switch (value)
+            {
+                case "Clubhouse":
+                    return Text.Clubhouse;
+                case "Depth Chart":
+                    return Text.DepthChart;
+                case "Roster":
+                    return Text.Roster;
+                case "Schedule":
+                    return Text.Schedule;
+                case "Statistics":
+                    return Text.Statistics;
+                case "Tickets":
+                    return Text.Tickets;
+            }
+            throw new Exception("Cannot unmarshal type Text");
+        }
+
+        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
+        {
+            if (untypedValue == null)
+            {
+                serializer.Serialize(writer, null);
+                return;
+            }
+            var value = (Text)untypedValue;
+            switch (value)
+            {
+                case Text.Clubhouse:
+                    serializer.Serialize(writer, "Clubhouse");
+                    return;
+                case Text.DepthChart:
+                    serializer.Serialize(writer, "Depth Chart");
+                    return;
+                case Text.Roster:
+                    serializer.Serialize(writer, "Roster");
+                    return;
+                case Text.Schedule:
+                    serializer.Serialize(writer, "Schedule");
+                    return;
+                case Text.Statistics:
+                    serializer.Serialize(writer, "Statistics");
+                    return;
+                case Text.Tickets:
+                    serializer.Serialize(writer, "Tickets");
+                    return;
+            }
+            throw new Exception("Cannot marshal type Text");
+        }
+
+        public static readonly TextConverter Singleton = new TextConverter();
+    }
+
+    internal class LogoRelConverter : JsonConverter
+    {
+        public override bool CanConvert(Type t) => t == typeof(LogoRel) || t == typeof(LogoRel?);
+
+        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
+        {
+            if (reader.TokenType == JsonToken.Null) return null;
+            var value = serializer.Deserialize<string>(reader);
+            switch (value)
+            {
+                case "dark":
+                    return LogoRel.Dark;
+                case "default":
+                    return LogoRel.Default;
+                case "full":
+                    return LogoRel.Full;
+                case "scoreboard":
+                    return LogoRel.Scoreboard;
+            }
+            throw new Exception("Cannot unmarshal type LogoRel");
+        }
+
+        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
+        {
+            if (untypedValue == null)
+            {
+                serializer.Serialize(writer, null);
+                return;
+            }
+            var value = (LogoRel)untypedValue;
+            switch (value)
+            {
+                case LogoRel.Dark:
+                    serializer.Serialize(writer, "dark");
+                    return;
+                case LogoRel.Default:
+                    serializer.Serialize(writer, "default");
+                    return;
+                case LogoRel.Full:
+                    serializer.Serialize(writer, "full");
+                    return;
+                case LogoRel.Scoreboard:
+                    serializer.Serialize(writer, "scoreboard");
+                    return;
+            }
+            throw new Exception("Cannot marshal type LogoRel");
+        }
+
+        public static readonly LogoRelConverter Singleton = new LogoRelConverter();
     }
 }
+

@@ -2,7 +2,7 @@
 @using GroupIS1024
 @model NFLOverviewModel
 @{
-    List<Franchise> franchises = (List<Franchise>)ViewData["Franchises"];
+
 }
 <div class="text-center">
 
@@ -18,7 +18,7 @@
             <th>Address</th>
         </tr>
         @{
-            foreach (Franchise franchise in franchises)
+            foreach (Franchise franchiseteams in franchises)
             {
                 <tr>
                     <td>@franchise.Team.Name</td>
