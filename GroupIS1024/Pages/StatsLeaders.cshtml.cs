@@ -48,7 +48,7 @@ namespace GroupIS1024.Pages
                 franchises = Franchise.FromJson(jsonString1);
             }
 
-            ViewData["Recipes"] = franchises;
+            ViewData["Franchises"] = franchises;
         }
     }
 }
