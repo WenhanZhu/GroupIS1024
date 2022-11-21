@@ -2,10 +2,17 @@
 @model IndexModel
 @{
     ViewData["Title"] = "FantasyFootball";
-    List<Franchise> franchises = (List<Franchise>) ViewData["Franchises"];
+    List<Franchise> franchises = (List<Franchise>)ViewData["Franchises"];
 }
-<html>
-<head>
+
+    <div class="text-center">
+        
+        <h1 class="display-4">Welcome to </h1>
+        <p>Catalog your plants, where they are, when they have been watered and fertilized.</p>
+        <p>We're glad you're here!</p>
+ 
+
+    </div>
 
     <meta charset="utf-8" />
     <title>FantasyFootball</title>
@@ -42,18 +49,45 @@
 
 
 
-</head>
+
 <body>
     <!-- Intro-->
     <div class="intro text-col">
-        <h1>FANTASTYFOODBALL</h1>
-        <h1>The best platform for your favourite foodball team and player.</h1><br /
+        <table>
+            <tr>
+                <th>abbreviations</th>
+                <th>city</th>
+                <th>conferences</th>
+                <th>divison</th>
+                <th>name</th>
+            </tr>
+            @{
+                foreach (Franchise franchise in franchises)
+                {
+                    <tr>
+                        <td>@franchise.Abbreviation</td>
+                        <td>@franchise.City</td>
+                        <td>@franchise.Conference</td>
+                        <td>@franchise.Division</td>
+                        <td>@franchise.Name</td>
+                    </tr>
+                }
+            }
+
+        </table>
+        <h1>FANTASTYFOOTBALL</h1>
+        <h1>The best platform for your favorite football team and player.</h1><br /
         <p>
-            Do you want to know more about your favourite foodball team and players? <br />
+            Do you want to know more about your favourite football team and players? <br />
             With FantasyFootball’s easy-to-use platform, you can find them with few click!<br />
-            We have all everything you need for your favourte hometeam!
+            We have all everything you need for your favorte hometeam!
         </p>
         <br />
+        </center>
+
+
+
+  
         <br />
         <button type="button" class="btn-lg btn-success intro-but">Create an account</button>
         <br />

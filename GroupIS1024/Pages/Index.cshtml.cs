@@ -1,30 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
+
+using System.Net;
+
 namespace GroupIS1024.Pages
 {
     public class IndexModel : PageModel
     {
         static readonly HttpClient client = new HttpClient();
+
+
+
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
         }
-
         public void OnGet()
         {
-            var task = client.GetAsync("https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams");
+            var task = client.GetAsync("https://www.balldontlie.io/api/v1/teams");
             HttpResponseMessage result = task.Result;
-            List<Franchise> franchises = new List<Franchise>();
+            List<Franchise> nbafranchises = new List<Franchise>();
             if (result.IsSuccessStatusCode)
             {
                 Task<string> readString = result.Content.ReadAsStringAsync();
                 string jsonString = readString.Result;
-                franchises = Franchise.FromJson(jsonString);
+                nbafranchises = Franchise.FromJson(jsonString);
             }
-            ViewData["Franchises"] = franchises;
+            ViewData["Franchise"] = nbafranchises;
+                }
+        
         }
     }
-}
+

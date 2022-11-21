@@ -17,167 +17,38 @@ namespace GroupIS1024
 
     public partial class Franchise
     {
-        [JsonProperty("sports")]
-        public List<Sport> Sports { get; set; }
-    }
-
-    public partial class Sport
-    {
         [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
         public long Id { get; set; }
-
-        [JsonProperty("uid")]
-        public string Uid { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("slug")]
-        public string Slug { get; set; }
-
-        [JsonProperty("leagues")]
-        public List<League> Leagues { get; set; }
-    }
-
-    public partial class League
-    {
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-
-        [JsonProperty("uid")]
-        public string Uid { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
 
         [JsonProperty("abbreviation")]
         public string Abbreviation { get; set; }
 
-        [JsonProperty("shortName")]
-        public string ShortName { get; set; }
+        [JsonProperty("city")]
+        public string City { get; set; }
 
-        [JsonProperty("slug")]
-        public string Slug { get; set; }
+        [JsonProperty("conference")]
+        public Conference Conference { get; set; }
 
-        [JsonProperty("teams")]
-        public List<TeamElement> Teams { get; set; }
-    }
+        [JsonProperty("division")]
+        public string Division { get; set; }
 
-    public partial class TeamElement
-    {
-        [JsonProperty("team")]
-        public TeamTeam Team { get; set; }
-    }
-
-    public partial class TeamTeam
-    {
-        [JsonProperty("id")]
-        [JsonConverter(typeof(ParseStringConverter))]
-        public long Id { get; set; }
-
-        [JsonProperty("uid")]
-        public string Uid { get; set; }
-
-        [JsonProperty("slug")]
-        public string Slug { get; set; }
-
-        [JsonProperty("abbreviation")]
-        public string Abbreviation { get; set; }
-
-        [JsonProperty("displayName")]
-        public string DisplayName { get; set; }
-
-        [JsonProperty("shortDisplayName")]
-        public string ShortDisplayName { get; set; }
+        [JsonProperty("full_name")]
+        public string FullName { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
-
-        [JsonProperty("nickname")]
-        public string Nickname { get; set; }
-
-        [JsonProperty("location")]
-        public string Location { get; set; }
-
-        [JsonProperty("color")]
-        public string Color { get; set; }
-
-        [JsonProperty("alternateColor")]
-        public string AlternateColor { get; set; }
-
-        [JsonProperty("isActive")]
-        public bool IsActive { get; set; }
-
-        [JsonProperty("isAllStar")]
-        public bool IsAllStar { get; set; }
-
-        [JsonProperty("logos")]
-        public List<Logo> Logos { get; set; }
-
-        [JsonProperty("links")]
-        public List<Link> Links { get; set; }
     }
 
-    public partial class Link
-    {
-        [JsonProperty("language")]
-        public Language Language { get; set; }
-
-        [JsonProperty("rel")]
-        public List<LinkRel> Rel { get; set; }
-
-        [JsonProperty("href")]
-        public Uri Href { get; set; }
-
-        [JsonProperty("text")]
-        public Text Text { get; set; }
-
-        [JsonProperty("shortText", NullValueHandling = NullValueHandling.Ignore)]
-        public Text? ShortText { get; set; }
-
-        [JsonProperty("isExternal")]
-        public bool IsExternal { get; set; }
-
-        [JsonProperty("isPremium")]
-        public bool IsPremium { get; set; }
-    }
-
-    public partial class Logo
-    {
-        [JsonProperty("href")]
-        public Uri Href { get; set; }
-
-        [JsonProperty("alt")]
-        public string Alt { get; set; }
-
-        [JsonProperty("rel")]
-        public List<LogoRel> Rel { get; set; }
-
-        [JsonProperty("width")]
-        public long Width { get; set; }
-
-        [JsonProperty("height")]
-        public long Height { get; set; }
-    }
-
-    public enum Language { En, EnUs };
-
-    public enum LinkRel { Clubhouse, Depthchart, Desktop, Roster, Schedule, Stats, Team, Tickets };
-
-    public enum Text { Clubhouse, DepthChart, Roster, Schedule, Statistics, Tickets };
-
-    public enum LogoRel { Dark, Default, Full, Scoreboard };
+    public enum Conference { East, West };
 
     public partial class Franchise
     {
-        public static Franchise FromJson(string json) => JsonConvert.DeserializeObject<Franchise>(json, GroupIS1024.Converter.Settings);
+        public static List<Franchise> FromJson(string json) => JsonConvert.DeserializeObject<List<Franchise>>(json, GroupIS1024.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this Franchise self) => JsonConvert.SerializeObject(self, GroupIS1024.Converter.Settings);
+        public static string ToJson(this List<Franchise> self) => JsonConvert.SerializeObject(self, GroupIS1024.Converter.Settings);
     }
 
     internal static class Converter
@@ -188,29 +59,28 @@ namespace GroupIS1024
             DateParseHandling = DateParseHandling.None,
             Converters =
             {
-                LanguageConverter.Singleton,
-                LinkRelConverter.Singleton,
-                TextConverter.Singleton,
-                LogoRelConverter.Singleton,
+                ConferenceConverter.Singleton,
                 new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
             },
         };
     }
 
-    internal class ParseStringConverter : JsonConverter
+    internal class ConferenceConverter : JsonConverter
     {
-        public override bool CanConvert(Type t) => t == typeof(long) || t == typeof(long?);
+        public override bool CanConvert(Type t) => t == typeof(Conference) || t == typeof(Conference?);
 
         public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
         {
             if (reader.TokenType == JsonToken.Null) return null;
             var value = serializer.Deserialize<string>(reader);
-            long l;
-            if (Int64.TryParse(value, out l))
+            switch (value)
             {
-                return l;
+                case "East":
+                    return Conference.East;
+                case "West":
+                    return Conference.West;
             }
-            throw new Exception("Cannot unmarshal type long");
+            throw new Exception("Cannot unmarshal type Conference");
         }
 
         public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
@@ -220,236 +90,21 @@ namespace GroupIS1024
                 serializer.Serialize(writer, null);
                 return;
             }
-            var value = (long)untypedValue;
-            serializer.Serialize(writer, value.ToString());
-            return;
-        }
-
-        public static readonly ParseStringConverter Singleton = new ParseStringConverter();
-    }
-
-    internal class LanguageConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(Language) || t == typeof(Language?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
+            var value = (Conference)untypedValue;
             switch (value)
             {
-                case "en":
-                    return Language.En;
-                case "en-US":
-                    return Language.EnUs;
+                case Conference.East:
+                    serializer.Serialize(writer, "East");
+                    return;
+                case Conference.West:
+                    serializer.Serialize(writer, "West");
+                    return;
             }
-            throw new Exception("Cannot unmarshal type Language");
+            throw new Exception("Cannot marshal type Conference");
         }
 
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (Language)untypedValue;
-            switch (value)
-            {
-                case Language.En:
-                    serializer.Serialize(writer, "en");
-                    return;
-                case Language.EnUs:
-                    serializer.Serialize(writer, "en-US");
-                    return;
-            }
-            throw new Exception("Cannot marshal type Language");
-        }
-
-        public static readonly LanguageConverter Singleton = new LanguageConverter();
-    }
-
-    internal class LinkRelConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(LinkRel) || t == typeof(LinkRel?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "clubhouse":
-                    return LinkRel.Clubhouse;
-                case "depthchart":
-                    return LinkRel.Depthchart;
-                case "desktop":
-                    return LinkRel.Desktop;
-                case "roster":
-                    return LinkRel.Roster;
-                case "schedule":
-                    return LinkRel.Schedule;
-                case "stats":
-                    return LinkRel.Stats;
-                case "team":
-                    return LinkRel.Team;
-                case "tickets":
-                    return LinkRel.Tickets;
-            }
-            throw new Exception("Cannot unmarshal type LinkRel");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (LinkRel)untypedValue;
-            switch (value)
-            {
-                case LinkRel.Clubhouse:
-                    serializer.Serialize(writer, "clubhouse");
-                    return;
-                case LinkRel.Depthchart:
-                    serializer.Serialize(writer, "depthchart");
-                    return;
-                case LinkRel.Desktop:
-                    serializer.Serialize(writer, "desktop");
-                    return;
-                case LinkRel.Roster:
-                    serializer.Serialize(writer, "roster");
-                    return;
-                case LinkRel.Schedule:
-                    serializer.Serialize(writer, "schedule");
-                    return;
-                case LinkRel.Stats:
-                    serializer.Serialize(writer, "stats");
-                    return;
-                case LinkRel.Team:
-                    serializer.Serialize(writer, "team");
-                    return;
-                case LinkRel.Tickets:
-                    serializer.Serialize(writer, "tickets");
-                    return;
-            }
-            throw new Exception("Cannot marshal type LinkRel");
-        }
-
-        public static readonly LinkRelConverter Singleton = new LinkRelConverter();
-    }
-
-    internal class TextConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(Text) || t == typeof(Text?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "Clubhouse":
-                    return Text.Clubhouse;
-                case "Depth Chart":
-                    return Text.DepthChart;
-                case "Roster":
-                    return Text.Roster;
-                case "Schedule":
-                    return Text.Schedule;
-                case "Statistics":
-                    return Text.Statistics;
-                case "Tickets":
-                    return Text.Tickets;
-            }
-            throw new Exception("Cannot unmarshal type Text");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (Text)untypedValue;
-            switch (value)
-            {
-                case Text.Clubhouse:
-                    serializer.Serialize(writer, "Clubhouse");
-                    return;
-                case Text.DepthChart:
-                    serializer.Serialize(writer, "Depth Chart");
-                    return;
-                case Text.Roster:
-                    serializer.Serialize(writer, "Roster");
-                    return;
-                case Text.Schedule:
-                    serializer.Serialize(writer, "Schedule");
-                    return;
-                case Text.Statistics:
-                    serializer.Serialize(writer, "Statistics");
-                    return;
-                case Text.Tickets:
-                    serializer.Serialize(writer, "Tickets");
-                    return;
-            }
-            throw new Exception("Cannot marshal type Text");
-        }
-
-        public static readonly TextConverter Singleton = new TextConverter();
-    }
-
-    internal class LogoRelConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(LogoRel) || t == typeof(LogoRel?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "dark":
-                    return LogoRel.Dark;
-                case "default":
-                    return LogoRel.Default;
-                case "full":
-                    return LogoRel.Full;
-                case "scoreboard":
-                    return LogoRel.Scoreboard;
-            }
-            throw new Exception("Cannot unmarshal type LogoRel");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (LogoRel)untypedValue;
-            switch (value)
-            {
-                case LogoRel.Dark:
-                    serializer.Serialize(writer, "dark");
-                    return;
-                case LogoRel.Default:
-                    serializer.Serialize(writer, "default");
-                    return;
-                case LogoRel.Full:
-                    serializer.Serialize(writer, "full");
-                    return;
-                case LogoRel.Scoreboard:
-                    serializer.Serialize(writer, "scoreboard");
-                    return;
-            }
-            throw new Exception("Cannot marshal type LogoRel");
-        }
-
-        public static readonly LogoRelConverter Singleton = new LogoRelConverter();
+        public static readonly ConferenceConverter Singleton = new ConferenceConverter();
     }
 }
+
 
