@@ -15,6 +15,12 @@ namespace GroupIS1024
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
+    public partial class FranchiseJson
+    {
+        [JsonProperty("franchise")]
+        public Franchise Franchise { get; set; }
+
+    }
     public partial class Franchise
     {
         [JsonProperty("id")]
@@ -40,6 +46,7 @@ namespace GroupIS1024
     }
 
     public enum Conference { East, West };
+
 
     public partial class Franchise
     {

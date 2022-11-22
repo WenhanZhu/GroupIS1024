@@ -1,11 +1,34 @@
 ﻿@page
 @model IndexModel
-{
+@{
     ViewData["Title"] = "FantasyFootball";
     List<Franchise> franchises = (List<Franchise>)ViewData["Franchise"];
 }
 
 
 <body>
+        <!-- Intro-->
+          <div class="intro text-col">
+        <table>
+            <tr>
+                <th>abbreviations</th>
+                <th>city</th>
+                <th>conferences</th>
+                <th>divison</th>
+                <th>name</th>
+            </tr>
+            @{
+                foreach (Franchise franchise in franchises)
+                {
+                    <tr>
+                        <td>@franchise.Abbreviation</td>
+                        <td>@franchise.City</td>
+                        <td>@franchise.Conference</td>
+                        <td>@franchise.Division</td>
+                        <td>@franchise.Name</td>
+                    </tr>
+                }
+            }
 
+        </table>
   </body>
