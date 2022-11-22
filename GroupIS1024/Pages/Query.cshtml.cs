@@ -28,27 +28,6 @@ namespace GroupIS1024.Pages
         }
         public string initTeamQuery { get; set; }
 
-        public async Task OnGetAsync(string TeamQuery)
-        {
-
-            initTeamQuery = TeamQuery;
-
-            HttpRequestMessage request1 = new HttpRequestMessage();
-            request1.RequestUri = new Uri("https://site.api.espn.com/apis/site/v2/sports/football/nfl/teams/" + TeamQuery);
-            request1.Method = HttpMethod.Get;
-            //request1.Headers.Add("X-RapidAPI-Key", "NA");
-            HttpResponseMessage response1 = await client.SendAsync(request1);
-            Franchise franchises = new Franchise();
-            if (response1.IsSuccessStatusCode)
-            {
-                Task<string> readString1 = response1.Content.ReadAsStringAsync();
-                string jsonString1 = readString1.Result;
-
-                System.Diagnostics.Debug.WriteLine("Value: " + jsonString1);
-                //franchises = Franchise.FromJson(jsonString1);
-            }
-
-            ViewData["Franchises"] = franchises;
+        
         }
     }
-}
