@@ -24,14 +24,14 @@ namespace GroupIS1024.Pages
         {
             var task = client.GetAsync("https://www.balldontlie.io/api/v1/teams");
             HttpResponseMessage result = task.Result;
-            List<Franchise> nbafranchises = new List<Franchise>();
+            List<Franchise> franchises = new List<Franchise>();
             if (result.IsSuccessStatusCode)
             {
                 Task<string> readString = result.Content.ReadAsStringAsync();
                 string jsonString = readString.Result;
-                nbafranchises = Franchise.FromJson(jsonString);
+                franchises = Franchise.FromJson(jsonString);
             }
-            ViewData["Franchise"] = nbafranchises;
+            ViewData["Franchise"] = franchises;
                 }
         
         }
