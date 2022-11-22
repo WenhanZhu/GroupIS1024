@@ -22,6 +22,7 @@ namespace GroupIS1024.Pages
         }
         public void OnGet()
         {
+
             var task = client.GetAsync("https://www.balldontlie.io/api/v1/teams");
             HttpResponseMessage result = task.Result;
             List<Franchise> franchises = new List<Franchise>();
@@ -30,10 +31,10 @@ namespace GroupIS1024.Pages
                 Task<string> readString = result.Content.ReadAsStringAsync();
                 string jsonString = readString.Result;
                 franchises = Franchise.FromJson(jsonString);
+
             }
+
             ViewData["Franchise"] = franchises;
         }
-
-        //}
     }
 }

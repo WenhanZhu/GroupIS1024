@@ -15,12 +15,12 @@ namespace GroupIS1024
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    public partial class FranchiseJson
-    {
-        [JsonProperty("franchise")]
-        public Franchise Franchise { get; set; }
+    public partial class FranchiseList
 
-    }
+    {
+        public List<Franchise> Franchise { get; set;  }
+
+            }
     public partial class Franchise
     {
         [JsonProperty("id")]
@@ -45,17 +45,25 @@ namespace GroupIS1024
         public string Name { get; set; }
     }
 
+
+
     public enum Conference { East, West };
 
+    public partial class FranchiseList
+    {
+  
+        public static List<Franchise> FromJson(string json) => JsonConvert.DeserializeObject<List<Franchise>>(json, GroupIS1024.Converter.Settings);
 
+    }
+    //public List<Franchise> { get; set; }
     public partial class Franchise
     {
-        public static List<Franchise> FromJson(string json) => JsonConvert.DeserializeObject<List<Franchise>>(json, GroupIS1024.Converter.Settings);
+       public static List<Franchise> FromJson(string json) => JsonConvert.DeserializeObject<List<Franchise>>(json, GroupIS1024.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this List<Franchise> self) => JsonConvert.SerializeObject(self, GroupIS1024.Converter.Settings);
+        public static string ToJson(this Franchise self) => JsonConvert.SerializeObject(self, GroupIS1024.Converter.Settings);
     }
 
     internal static class Converter
@@ -113,3 +121,4 @@ namespace GroupIS1024
         public static readonly ConferenceConverter Singleton = new ConferenceConverter();
     }
 }
+
