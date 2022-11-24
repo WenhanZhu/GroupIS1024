@@ -1,4 +1,28 @@
 ﻿@page
 @model GroupIS1024.Pages.LearntheLeagueModel
 @{
+    List<Franchise> franchises = (List<Franchise>) ViewData["Franchises"];
 }
+<div class="text-center">
+    <table>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 4</th>
+
+        </tr>
+    @{
+        foreach (Franchise franchise in franchises)
+        {
+                <tr>
+                    <td>@franchise.Abbreviation</td>
+                    <td>@franchise.City</td>
+                    <td>@franchise.Conference</td>
+                    <td>@franchise.Name</td>
+
+                </tr>
+        }
+    }
+</table>
+</div>

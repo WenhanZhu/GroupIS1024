@@ -18,7 +18,7 @@ namespace GroupIS1024
     public partial class FranchiseList
 
     {
-        public List<Franchise> Franchise { get; set;  }
+        public Franchise Franchise { get; set;  }
 
             }
     public partial class Franchise
@@ -49,13 +49,7 @@ namespace GroupIS1024
 
     public enum Conference { East, West };
 
-    public partial class FranchiseList
-    {
-  
-        public static List<Franchise> FromJson(string json) => JsonConvert.DeserializeObject<List<Franchise>>(json, GroupIS1024.Converter.Settings);
 
-    }
-    //public List<Franchise> { get; set; }
     public partial class Franchise
     {
        public static List<Franchise> FromJson(string json) => JsonConvert.DeserializeObject<List<Franchise>>(json, GroupIS1024.Converter.Settings);
