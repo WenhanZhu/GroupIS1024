@@ -14,10 +14,10 @@ namespace GroupIS1024.Data
         {
         }
 
-        public DbSet<GroupIS1024.Models.Player> Player { get; set; } = default!;
+        public DbSet<GroupIS1024.Models.Coach> Coach { get; set; } = default!;
+
+        public DbSet<GroupIS1024.Models.Player> Player { get; set; }
 
         public DbSet<GroupIS1024.Models.Team> Team { get; set; }
-
-        public DbSet<GroupIS1024.Models.Coach> Coach { get; set; }
     }
 }

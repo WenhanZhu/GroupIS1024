@@ -1,3 +1,11 @@
 ﻿@page
+@model GroupIS1024.Pages.FormModel
+@{
 
-@{}
+}
+
+
+<form method="post" enctype="multipart/form-data">
+    <input type="file" asp-for="Upload" />
+    <input type="submit" />
+</form>
