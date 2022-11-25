@@ -4,19 +4,71 @@
     
  
 }
+<style>
+        .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      padding: 16px;
+      text-align: center;
+      background-color: #444;
+      color: white;
+    }
+        .column {
+      float: left;
+      width: 25%;
+      padding: 0 5px;
+    }
 
+    .row {margin: 0 -5px;}
 
-<body>
-        <!-- Intro-->
-          <div class="intro text-col">
-        <table>
-            <tr>
-                <th>abbreviations</th>
-                <th>city</th>
-                <th>conferences</th>
-                <th>divison</th>
-                <th>name</th>
-            </tr>
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
 
-        </table>
-  </body>
+   
+</style>
+
+    <div class="container" style="margin-left:-88px;position:relative;display:flex;">
+        <img width="114%" src="~/img/footballnet4.jpg" />
+        <h6 style="position:absolute;top:50%;left:56%;font-size:xxx-large;font-weight:bolder;color:white;">Fantasy Football League</h6>
+    </div>
+<div class="container">
+<div class="card">
+        <div class="row">
+            <div class="column">
+                <div class="card">
+                    <p><i class="fa fa-user"></i></p>
+                    <h3>11+</h3>
+                    <p>Partners</p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <p><i class="fa fa-check"></i></p>
+                    <h3>55+</h3>
+                    <p>Projects</p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <p><i class="fa fa-smile-o"></i></p>
+                    <h3>100+</h3>
+                    <p>Happy Clients</p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <p><i class="fa fa-coffee"></i></p>
+                    <h3>100+</h3>
+                    <p>Meetings</p>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+
