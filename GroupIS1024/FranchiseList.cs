@@ -4,7 +4,7 @@
 //
 //    using GroupIS1024;
 //
-//    var franchise = Franchise.FromJson(jsonString);
+//    var franchiseList = FranchiseList.FromJson(jsonString);
 
 namespace GroupIS1024
 {
@@ -16,11 +16,14 @@ namespace GroupIS1024
     using Newtonsoft.Json.Converters;
 
     public partial class FranchiseList
-
     {
-        public Franchise Franchise { get; set;  }
+        [JsonProperty("data")]
+        public Franchise Franchise { get; set; }
 
-            }
+        [JsonProperty("meta")]
+        public Meta Meta { get; set; }
+    }
+
     public partial class Franchise
     {
         [JsonProperty("id")]
@@ -45,14 +48,29 @@ namespace GroupIS1024
         public string Name { get; set; }
     }
 
+    public partial class Meta
+    {
+        [JsonProperty("total_pages")]
+        public long TotalPages { get; set; }
 
+        [JsonProperty("current_page")]
+        public long CurrentPage { get; set; }
+
+        [JsonProperty("next_page")]
+        public object NextPage { get; set; }
+
+        [JsonProperty("per_page")]
+        public long PerPage { get; set; }
+
+        [JsonProperty("total_count")]
+        public long TotalCount { get; set; }
+    }
 
     public enum Conference { East, West };
 
-
     public partial class Franchise
     {
-       public static List<Franchise> FromJson(string json) => JsonConvert.DeserializeObject<List<Franchise>>(json, GroupIS1024.Converter.Settings);
+        public static List<Franchise> FromJson(string json) => JsonConvert.DeserializeObject<List<Franchise>>(json, GroupIS1024.Converter.Settings);
     }
 
     public static class Serialize
@@ -115,4 +133,3 @@ namespace GroupIS1024
         public static readonly ConferenceConverter Singleton = new ConferenceConverter();
     }
 }
-
