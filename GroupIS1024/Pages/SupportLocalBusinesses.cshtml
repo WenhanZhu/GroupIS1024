@@ -1,4 +1,28 @@
 ﻿@page
 @model GroupIS1024.Pages.SupportLocalBusinessesModel
 @{
+    List<ChefAuthor> chefauthors = (List<ChefAuthor>)ViewData["Chef Authors"];
 }
+<div class="text-center">
+    <table>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 4</th>
+
+        </tr>
+        @{
+            foreach (ChefAuthor chefauthor in chefauthors)
+            {
+                <tr>
+                    <td>@chefauthor.Name</td>
+                    <td>@chefauthor.Phone</td>
+                    <td>@chefauthor.Email</td>
+                    <td>@chefauthor.FavoriteRecipe</td>
+
+                </tr>
+            }
+        }
+    </table>
+</div>
