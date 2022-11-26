@@ -17,7 +17,7 @@ namespace GroupIS1024.Pages
             funTeamNames.Add("Spicy Curry");
             funTeamNames.Add("Bronny Bunch");
             funTeamNames.Add("Lowry Expectations");
-            funTeamNames.Add("The Fantastic De’Aaron Fox");
+            funTeamNames.Add("The Fantastic DeAaron Fox");
             funTeamNames.Add("Making Booker");
 
             return new JsonResult(funTeamNames);
