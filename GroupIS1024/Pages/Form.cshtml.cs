@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
+
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Schema;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -19,7 +18,7 @@ namespace GroupIS1024.Pages
 
         public FormModel(IWebHostEnvironment _environment)
         {
-            environment = _environment;
+          environment = _environment;
         }
 
         [BindProperty]
@@ -34,7 +33,7 @@ namespace GroupIS1024.Pages
             string fileName = Upload.FileName;
             var file = Path.Combine(environment.ContentRootPath, "upload", fileName);
 
-            using (var fileStream = new FileStream(file, FileMode.Create))
+            using(var fileStream = new FileStream(file, FileMode.Create))
             {
                 Upload.CopyTo(fileStream);
             }
@@ -44,10 +43,10 @@ namespace GroupIS1024.Pages
 
             ValidateXML(file);
 
-            XmlNode northernSpecimen = doc.SelectSingleNode("/plant/specimens/specimen[latitude>0]/comments");
-            string comments = northernSpecimen.InnerText;
-            XmlNodeList oldChildren = doc.DocumentElement.ChildNodes;
-            XmlNodeList specimens = doc.SelectNodes("/plant/specimens/specimen");
+            XmlNode Favoritegames = doc.SelectSingleNode("/survey/memorable_games/game");
+            string comments = Favoritegames.InnerText;
+            XmlNodeList childelements = doc.DocumentElement.ChildNodes;
+            XmlNodeList games = doc.SelectNodes("/survey/memorable_games/game");
         }
 
         private void ValidateXML(string file)
@@ -56,7 +55,7 @@ namespace GroupIS1024.Pages
             settings.ValidationType = ValidationType.Schema;
 
             // read in schema file.
-            var xsdPath = Path.Combine(environment.ContentRootPath, "upload", "plants.xsd");
+            var xsdPath = Path.Combine(environment.ContentRootPath, "Upload", "survey.xsd");
 
             settings.Schemas.Add(null, xsdPath);
 
@@ -65,28 +64,25 @@ namespace GroupIS1024.Pages
 
             settings.ValidationEventHandler += new System.Xml.Schema.ValidationEventHandler(this.ValidationEventHandler);
 
-            try
-            {
+            try {
                 XmlReader xmlReader = XmlReader.Create(file, settings);
                 while (xmlReader.Read())
                 {
 
+
                 }
                 ViewData["result"] = "Validation Passed";
-            }
-            catch (Exception e)
+            } catch (Exception e)
             {
                 ViewData["result"] = e.Message;
             }
+            }
+            public void ValidationEventHandler(object sender, ValidationEventArgs args)
+            {
+                result = "Validation Failed.  Message: " + args.Message;
 
+                // TODO throw an exception
+                throw new Exception("Validation failed.  Message: " + args.Message);
+            }
         }
-
-        public void ValidationEventHandler(object sender, ValidationEventArgs args)
-        {
-            result = "Validation Failed.  Message: " + args.Message;
-
-            // TODO throw an exception
-            throw new Exception("Validation failed.  Message: " + args.Message);
         }
-    }
-}

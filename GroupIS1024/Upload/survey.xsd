@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="survey">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="favorite_player">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="60"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="favorite_team" minOccurs="0" default="spp.">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="60"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="favorite_position" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="60"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="favorite_league" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="100"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="years_watched" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:integer">
+              <xs:minInclusive value="0"/>
+              <xs:maxInclusive value="100"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="first_game_watched" type="xs:date" minOccurs="0"/>
+        <xs:element name="most_recent_game_watched" type="xs:date" minOccurs="0"/>
+        <xs:element name="been_to_a_game" type="xs:boolean" minOccurs="0"/>
+        <xs:element name="favorite_score" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="three_Point"/>
+              <xs:enumeration value="dunk"/>
+              <xs:enumeration value="jump_shot"/>
+              <xs:enumeration value="free_throw"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="fav_division" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="afc_north"/>
+              <xs:enumeration value="afc_south"/>
+              <xs:enumeration value="afc_west"/>
+              <xs:enumeration value="afc_central"/>
+              <xs:enumeration value="nfc_east"/>
+              <xs:enumeration value="nfc_central"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="memorable_games">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="game" minOccurs="1" maxOccurs="unbounded" type="game_ex"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="game_ex">
+    <xs:sequence>
+      <xs:element name="year" type="xs:string" minOccurs="0"/>
+      <xs:element name="team_a" type="xs:string" minOccurs="0"/>
+      <xs:element name="team_b" type="xs:string" minOccurs="0"/>
+      <xs:element name="comments" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="survey.xsl"?>
+<survey xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="survey.xsd">
+  <!-- All payload data belongs here -->
+  <favorite_player>Lebron James</favorite_player>
+  <favorite_team>Cleveland Cavs</favorite_team>
+  <favorite_position>Point Guard</favorite_position>
+  <years_watched>20</years_watched>
+  <first_game_watched>2012-03-15</first_game_watched>
+  <most_recent_game_watched>2012-11-30</most_recent_game_watched>
+  <been_to_a_game>true</been_to_a_game>
+  <favorite_score>dunk</favorite_score>
+  <fav_division>afc_north</fav_division>
+  <memorable_games>
+    <game>
+      <year>2012</year>
+      <team_a>Miami Heat</team_a>
+      <team_b>Boston Celtics</team_b>
+      <comments>Great Game!</comments>
+    </game>
+    <game>
+      <year>2016</year>
+      <team_a>Cleveland Cavs</team_a>
+      <team_b>Golden State Warriors</team_b>
+      <comments>Great finals series</comments>
+    </game>
+    <game>
+      <year>2022</year>
+      <team_a>Boston Celtics</team_a>
+      <team_b>Golden State Warriors</team_b>
+      <comments>Great Matchup</comments>
+    </game>
+    <game>
+      <year>2021</year>
+      <team_a>Milwaukee Bucks</team_a>
+      <team_b>Phoenix Suns</team_b>
+      <comments>New and fun finals matchup</comments>
+    </game>
+  </memorable_games>
+</survey>
