@@ -4,7 +4,7 @@
 //
 //    using GroupIS1024;
 //
-//    var news = News.FromJson(jsonString);
+//    var newsFeed = NewsFeed.FromJson(jsonString);
 
 namespace GroupIS1024
 {
@@ -20,17 +20,17 @@ namespace GroupIS1024
         [JsonProperty("category")]
         public string Category { get; set; }
 
-        [JsonProperty("datum")]
-        public List<Feed> Feeds { get; set; }
+        [JsonProperty("data")]
+        public List<Sport> Data { get; set; }
 
         [JsonProperty("success")]
         public bool Success { get; set; }
     }
 
-    public partial class Feed
+    public partial class Sport
     {
         [JsonProperty("author")]
-        public Author Author { get; set; }
+        public string Author { get; set; }
 
         [JsonProperty("content")]
         public string Content { get; set; }
@@ -57,19 +57,17 @@ namespace GroupIS1024
         public Uri Url { get; set; }
     }
 
-    public enum Author { AnkushVerma, AnmolSharma, ArnabMukherji, PragyaSwastik };
+    public enum Date { The27Nov2022Sunday };
 
-    public enum Date { The24Nov2022Thursday };
-
-    public partial class NewsFeed
+    public partial class Sport
     {
-        public static NewsFeed FromJson(string json) => JsonConvert.DeserializeObject<NewsFeed>(json, GroupIS1024.Converter.Settings);
+        public static NewsFeed FromJson(string json) => JsonConvert.DeserializeObject<NewsFeed>(json, GroupIS1024.Converter1.Settings);
     }
 
-    //public static class Serialize1
-    //{
-       // public static string ToJson(this NewsFeed self) => JsonConvert.SerializeObject(self, GroupIS1024.Converter.Settings);
-   // }
+    public static class Serialize1
+    {
+        public static string ToJson(this NewsFeed self) => JsonConvert.SerializeObject(self, GroupIS1024.Converter1.Settings);
+    }
 
     internal static class Converter1
     {
@@ -79,62 +77,10 @@ namespace GroupIS1024
             DateParseHandling = DateParseHandling.None,
             Converters =
             {
-                AuthorConverter.Singleton,
                 DateConverter.Singleton,
                 new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
             },
         };
-    }
-
-    internal class AuthorConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(Author) || t == typeof(Author?);
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            switch (value)
-            {
-                case "Ankush Verma":
-                    return Author.AnkushVerma;
-                case "Anmol Sharma":
-                    return Author.AnmolSharma;
-                case "Arnab Mukherji ":
-                    return Author.ArnabMukherji;
-                case "Pragya Swastik":
-                    return Author.PragyaSwastik;
-            }
-            throw new Exception("Cannot unmarshal type Author");
-        }
-
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (Author)untypedValue;
-            switch (value)
-            {
-                case Author.AnkushVerma:
-                    serializer.Serialize(writer, "Ankush Verma");
-                    return;
-                case Author.AnmolSharma:
-                    serializer.Serialize(writer, "Anmol Sharma");
-                    return;
-                case Author.ArnabMukherji:
-                    serializer.Serialize(writer, "Arnab Mukherji ");
-                    return;
-                case Author.PragyaSwastik:
-                    serializer.Serialize(writer, "Pragya Swastik");
-                    return;
-            }
-            throw new Exception("Cannot marshal type Author");
-        }
-
-        public static readonly AuthorConverter Singleton = new AuthorConverter();
     }
 
     internal class DateConverter : JsonConverter
@@ -145,9 +91,9 @@ namespace GroupIS1024
         {
             if (reader.TokenType == JsonToken.Null) return null;
             var value = serializer.Deserialize<string>(reader);
-            if (value == "24 Nov 2022,Thursday")
+            if (value == "27 Nov 2022,Sunday")
             {
-                return Date.The24Nov2022Thursday;
+                return Date.The27Nov2022Sunday;
             }
             throw new Exception("Cannot unmarshal type Date");
         }
@@ -160,9 +106,9 @@ namespace GroupIS1024
                 return;
             }
             var value = (Date)untypedValue;
-            if (value == Date.The24Nov2022Thursday)
+            if (value == Date.The27Nov2022Sunday)
             {
-                serializer.Serialize(writer, "24 Nov 2022,Thursday");
+                serializer.Serialize(writer, "27 Nov 2022,Sunday");
                 return;
             }
             throw new Exception("Cannot marshal type Date");
@@ -171,4 +117,3 @@ namespace GroupIS1024
         public static readonly DateConverter Singleton = new DateConverter();
     }
 }
-

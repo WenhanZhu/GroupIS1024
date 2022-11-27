@@ -7,38 +7,23 @@ namespace GroupIS1024.Pages
     {
 
         static readonly HttpClient client = new HttpClient();
-
-
-        private readonly ILogger<IndexModel> _logger;
-
-        public NewsModel(ILogger<IndexModel> logger)
-        {
-            _logger = logger;
-        }
-        public string Query { get; set; }
-
-        public async Task OnGetAsync(string query)
+        public void OnGet()
         {
 
-            Query = query;
 
-            HttpRequestMessage request = new HttpRequestMessage();
-            request.RequestUri = new Uri("https://inshorts.deta.dev/news?category=" + query);
-            request.Method = HttpMethod.Get;
-            //request.Headers.Add("X-Api-Key", "HnbsldX1Z3abqOl+zT7ySw==rpv1LaFBH0Ibgt3q");
-            HttpResponseMessage response = await client.SendAsync(request);
-            NewsFeed newsfeeds = new NewsFeed();
-
-            if (response.IsSuccessStatusCode)
+            var task = client.GetAsync("https://inshorts.deta.dev/news?category=sports");
+            HttpResponseMessage result = task.Result;
+            List<Sport> sports = new List<Sport>();
+            if (result.IsSuccessStatusCode)
             {
-                Task<string> readString = response.Content.ReadAsStringAsync();
+                Task<string> readString = result.Content.ReadAsStringAsync();
                 string jsonString = readString.Result;
+                NewsFeed newsfeed = Sport.FromJson(jsonString);
+                sports = newsfeed.Data;
 
-                System.Diagnostics.Debug.WriteLine("Value: " + jsonString);
-                newsfeeds = NewsFeed.FromJson(jsonString);
             }
 
-            ViewData["Nutritions"] = newsfeeds;
+            ViewData["Sports"] = sports;
         }
     }
 }

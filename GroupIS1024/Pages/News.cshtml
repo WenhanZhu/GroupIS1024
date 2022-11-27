@@ -1,51 +1,30 @@
 ﻿@page
 @model GroupIS1024.Pages.NewsModel
 @{
-    ViewData["Title"] = "Home page";
-    NewsFeed newsfeeds = (NewsFeed)ViewData["NewsFeeds"];
+    List<Sport> sports = (List<Sport>) ViewData["Sports"];
 }
-
-<body>
-
-
-
-    <div class="container align-content-center">
-        <div class="align-content-center">
-            <center><img width="700" height="300" src="~/Images/Center_Image.png"></center>
-        </div>
-
-
-        <div class="search-bar">
-
-            <form action="" method="get" class="form-online">
-                <center><input asp-for="Query" name="query" id="query" class="form-control mr-sm-2 mb-2" placeholder="Search Food Name.." /></center>
-                <center><button type="Submit" class="btn btn-primary mb-2">Search</button></center>
-            </form>
-        </div>
-        <div class="buttons text-center">
-            <div class="btn-toolbar" role="group" aria-label="...">
-            </div>
-        </div>
-    </div>
+<div class="text-center">
     <table>
         <tr>
-            <th>Name</th>
-            <th>Sugar (in g)</th>
-            <th>Fiber (in g)</th>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 4</th>
+            <th>Column 5</th>
 
         </tr>
-
-        @{
-            foreach (Feed feed in newsfeeds.Feeds)
-            {
+    @{
+        foreach (Sport sport in sports)
+        {
                 <tr>
-                    <td>@feed.Content</td>
-                    <td>@feed.Author</td>
-                    <td>@feed.Date</td>
+                    <td>@sport.Author</td>
+                    <td>@sport.Content</td>
+                    <td>@sport.Title</td>
+                    <td>@sport.Time</td>
+                    <td>@sport.ReadMoreUrl</td>
 
                 </tr>
-            }
         }
-    </table>
-
-</body>
+    }
+</table>
+</div>
