@@ -12,7 +12,7 @@ namespace GroupIS1024.Models
 
         public List<Coach>? Coaches { get; set; }
 
-        public List<Player> Players { get; set; }
+        public List<Player>? Players { get; set; }
 
 
     }

@@ -18,8 +18,8 @@ namespace GroupIS1024
     public partial class FranchiseList
     {
         [JsonProperty("data")]
-        public Franchise Franchise { get; set; }
-        //changed from public List<Franchise> Data { get; set; }
+        //public Franchise Franchise { get; set; }
+        public List<Franchise> Data { get; set; }
 
         [JsonProperty("meta")]
         public Meta Meta { get; set; }
@@ -72,14 +72,14 @@ namespace GroupIS1024
     public partial class Franchise
     //public partial class FranchiseList
     {
-        public static List<Franchise> FromJson(string json) => JsonConvert.DeserializeObject<List<Franchise>>(json, GroupIS1024.Converter.Settings);
-        //changed from public static FranchiseList FromJson(string json) => JsonConvert.DeserializeObject<FranchiseList>(json, GroupIS1024.Converter.Settings); 
+        //public static List<Franchise> FromJson(string json) => JsonConvert.DeserializeObject<List<Franchise>>(json, GroupIS1024.Converter.Settings);
+        public static FranchiseList FromJson(string json) => JsonConvert.DeserializeObject<FranchiseList>(json, GroupIS1024.Converter.Settings); 
     }
 
     public static class Serialize
     {
-        public static string ToJson(this Franchise self) => JsonConvert.SerializeObject(self, GroupIS1024.Converter.Settings);
-        ////changed from public static string ToJson(this FranchiseList self) => JsonConvert.SerializeObject(self, GroupIS1024.Converter.Settings);
+        //public static string ToJson(this Franchise self) => JsonConvert.SerializeObject(self, GroupIS1024.Converter.Settings);
+        public static string ToJson(this FranchiseList self) => JsonConvert.SerializeObject(self, GroupIS1024.Converter.Settings);
     }
 
     internal static class Converter

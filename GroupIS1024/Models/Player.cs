@@ -32,6 +32,6 @@ namespace GroupIS1024.Models
         public Team? Team { get; set; }
 
 
-        public int TeamId { get; set; }
+        public int? TeamId { get; set; }
     }
 }

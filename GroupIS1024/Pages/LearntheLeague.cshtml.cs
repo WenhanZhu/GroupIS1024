@@ -25,7 +25,7 @@ namespace GroupIS1024.Pages
 
                 }
 
-                ViewData["Franchise"] = franchises;
+                ViewData["Franchises"] = franchises;
             }
         }
     }

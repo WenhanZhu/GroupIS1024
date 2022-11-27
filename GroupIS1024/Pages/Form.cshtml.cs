@@ -43,10 +43,10 @@ namespace GroupIS1024.Pages
 
             ValidateXML(file);
 
-            XmlNode Favoritegames = doc.SelectSingleNode("/survey/memorable_games/game");
-            string comments = Favoritegames.InnerText;
-            XmlNodeList childelements = doc.DocumentElement.ChildNodes;
-            XmlNodeList games = doc.SelectNodes("/survey/memorable_games/game");
+            //XmlNode Favoritegames = doc.SelectSingleNode("/survey/memorable_games/game");
+            //string comments = Favoritegames.InnerText;
+            //XmlNodeList childelements = doc.DocumentElement.ChildNodes;
+            //XmlNodeList games = doc.SelectNodes("/survey/memorable_games/game");
         }
 
         private void ValidateXML(string file)
