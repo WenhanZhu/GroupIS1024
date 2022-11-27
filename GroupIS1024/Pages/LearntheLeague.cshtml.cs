@@ -21,9 +21,10 @@ namespace GroupIS1024.Pages
                 {
                     Task<string> readString = result.Content.ReadAsStringAsync();
                     string jsonString = readString.Result;
-                    franchises = Franchise.FromJson(jsonString);
+                FranchiseList franchiseList = Franchise.FromJson(jsonString);
+                franchises = franchiseList.Data;
 
-                }
+            }
 
                 ViewData["Franchises"] = franchises;
             }
