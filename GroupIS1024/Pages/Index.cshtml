@@ -5,13 +5,14 @@
  
 }
 <style>
-        .card {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        .cards {
       padding: 16px;
       text-align: center;
-      background-color: #444;
+      background-color: #0064D5 ;
       color: white;
+      border-radius:20px;
     }
+    
         .column {
       float: left;
       width: 25%;
@@ -26,49 +27,194 @@
       display: table;
       clear: both;
     }
+        {font-family: Arial, Helvetica, sans-serif;}
+    * {box-sizing: border-box;}
+
+    input[type=text], select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
+    }
+
+    input[type=submit] {
+      background-color:#0064D5 ;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom:50px
+    }
+
+    input[type=submit]:hover {
+      background-color:#0064D5 ;
+    }
+         .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border-radius: 0.25rem;
+        border:0px;
+    }
 
    
 </style>
-
-    <div class="container" style="margin-left:-88px;position:relative;display:flex;">
-        <img width="114%" src="~/img/footballnet4.jpg" />
-        <h6 style="position:absolute;top:50%;left:56%;font-size:xxx-large;font-weight:bolder;color:white;">Fantasy Football League</h6>
+    <div class="container" style="margin-left:-96px;position:relative;display:flex;">
+        <img width="115.5%" height="660px" src="~/img/footballnet4.jpg" />
+    <h6 style="position:absolute;top:50%;left:56%;font-size:xxx-large;font-weight:bolder;color:white;font-family: 'Passion One', cursive;">Fantasy Football League</h6>
     </div>
+
+<hr />
 <div class="container">
-<div class="card">
-        <div class="row">
+    <div class="row">
+        <div class="col">
+            <h3 style="font-family: 'Bree Serif', serif;    margin-left: 35%;margin-bottom: 40px;">About Us</h3>
+            <p>
+Have you ever lost in the random details of football players from different sites which are not up-to-date and informative to select a team for a fantasy football league? We got you. Fantasy Football League is a one-stop page for all football lovers. Here, we provide all real-time stats about football games all around the world, including player stats and team stats. Any player interested in knowing any details about football can find them here; you can find trending players' data on Twitter and customization based on your interests.
+            </p>
+        </div>
+        <div class="col">
+            <img style="margin-left: 165px;" src="~/img/aboutus.jpg" width="300px" />
+        </div>
+    </div>
+</div>
+<hr />
+<div class="container">
+    <h2 style="margin-left:45%;font-family: 'Bree Serif', serif;    margin-top: 60px;margin-bottom: 50px;">Our Stats</h2>
+    <div>
+        <div class="row" style="margin-top:20px">
             <div class="column">
-                <div class="card">
+                <div class="cards">
                     <p><i class="fa fa-user"></i></p>
-                    <h3>11+</h3>
-                    <p>Partners</p>
+                    <h3>30+</h3>
+                    <p>Teams</p>
                 </div>
             </div>
 
             <div class="column">
-                <div class="card">
+                <div class="cards">
                     <p><i class="fa fa-check"></i></p>
-                    <h3>55+</h3>
-                    <p>Projects</p>
-                </div>
-            </div>
-
-            <div class="column">
-                <div class="card">
-                    <p><i class="fa fa-smile-o"></i></p>
                     <h3>100+</h3>
-                    <p>Happy Clients</p>
+                    <p>Players</p>
                 </div>
             </div>
 
             <div class="column">
-                <div class="card">
+                <div class="cards">
+                    <p><i class="fa fa-smile-o"></i></p>
+                    <h3>1000+</h3>
+                    <p>Happy Users</p>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="cards">
                     <p><i class="fa fa-coffee"></i></p>
                     <h3>100+</h3>
-                    <p>Meetings</p>
+                    <p>Interactions</p>
                 </div>
             </div>
         </div>
+    </div>
 </div>
+<hr />
+<div class="container">
+    <h3 style="margin-left:41%;font-family: 'Bree Serif', serif;    margin-top: 60px;
+    margin-bottom: 50px;">
+        Services We Offer
+    </h3>
+    <div class="row" style="margin-left:60px;margin-top:20px">
+    <div class="col">
+        <div class="card" style="width: 15rem;">
+                <img class="card-img-top" width="218px" src="/img/tweet.png" alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text">Receive tweets of your famous football players and stay updated</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" style="width: 15rem;">
+            <img class="card-img-top" src="/img/stats.png" width="250px" alt="Card image cap">
+            <div class="card-body">
+                <p class="card-text">Get access to all the stats of teams and players</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+            <div class="card" style="width: 15rem;">
+                <img class="card-img-top" src="/img/customization.png" width="250px" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Customized feed based on your interests.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<hr />
+<div class="container">
+    <h2 style="margin-left:40%;font-family: 'Bree Serif', serif;margin-top: 60px;
+    margin-bottom: 50px">
+        Meet Our Team
+    </h2>
+    <div class="row">
+        <div class="col">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="/img/charran.jpeg" height="414px" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Sai Charran Reddy</h5>
+             </div>
+        </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/img/zhu.jpeg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Wenhan Zhu</h5>
+                  </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/img/ryan.jpeg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Ryan Sosinski</h5>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="container" >
+    <h4 style="font-family: 'Bree Serif', serif;margin-top: 60px;
+    margin-bottom: 50px">
+        Contact Us
+    </h4>
+    <form action="/action_page.php">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="firstname" placeholder="Your name..">
 
+        <label for="lname">Email Address</label>
+        <input type="text" id="lname" name="lastname" placeholder="Your email id..">
+
+        <label for="country">Country</label>
+        <select id="country" name="country">
+            <option value="australia">Australia</option>
+            <option value="canada">Canada</option>
+            <option value="usa">USA</option>
+        </select>
+
+        <label for="subject">Subject</label>
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>

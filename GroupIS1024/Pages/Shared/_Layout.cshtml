@@ -15,19 +15,46 @@
     <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Passion+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Microbe&display=swap" rel="stylesheet">
+<style>
+li{
+    margin-left:25px
+}
+.toprow{
+            margin-left: -64px;
+            background: black;
+            width: 110%;
+}
+</style>
 </head>
 <body>
     <div class="container">
-        <div class="row top-buffer logobar">
+        <div class="row toprow top-buffer logobar" style="margin-left:-64px">
             <div">
-                <a asp-area="" asp-page="/Index"><img src="/img/ic_footballlogo.png" height="75" alt="logo" />
+                <a asp-area="" asp-page="/Index" style="font-family: 'Rubik Microbe', cursive; color:#0064D5 ;">
+                    <img src="/img/ic_footballlogo.png" height="75" alt="logo" />
                     Fantasy Football League
                 </a>
 
-                <a asp-area="" asp-page="/Players/Create">Sign Up To Play</a>   |
-                <a asp-area="" asp-page="/Coaches/Create">Sign Up To Coach</a>   |
-                <a asp-area="" asp-page="/Teams/Index">Teams</a>   |
-                <a asp-area="" asp-page="/Help">Help</a>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1" style="flex-direction: row;">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/Players/Create">Sign Up To Play</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/Coaches/Create">Sign Up to Coach</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/Teams/Index">Teams</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/Help">Help</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         
@@ -45,14 +72,11 @@
 
 
 
-    <div class="footer text-muted">
-        &copy; Sai Wenhan Ryan LLC 2022<br />
-        <a asp-area="" asp-page="/Players/Create">Sign Up To Play</a>  |
-        <a asp-area="" asp-page="/Coaches/Create">Sign Up To Coach</a>  |
-        <a asp-area="" asp-page="/Teams/Index">Teams</a>  |
-        <a asp-area="" asp-page="/Help">Help</a>  |
-        <a asp-area="" asp-page="/Admin">Admin</a>
-    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Fantasy Football League - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
