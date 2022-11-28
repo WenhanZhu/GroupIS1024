@@ -4,27 +4,69 @@
 @{
     ViewData["Title"] = "Index";
 }
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<<style>
+        .cards {
+      padding: 16px;
+      text-align: center;
+      background-color: #0064D5 ;
+      color: white;
+      border-radius:20px;
+    }
+    
+        .column {
+      float: left;
+      width: 25%;
+      padding: 0 5px;
+    }
 
-<style>
-    .header{
-        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        margin-top:30px;
-        margin-left:10px
+    .row {margin: 0 -5px;}
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
     }
-    .main-header {
-        font-size: x-large;
-        font-weight: 900;
-        font-style: italic
+        {font-family: Arial, Helvetica, sans-serif;}
+    * {box-sizing: border-box;}
+
+    input[type=text], select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
     }
-    .sub-header{
-        font-size:large;
-        font-weight:500;
-        font-style:normal;
+
+    input[type=submit] {
+      background-color:#0064D5 ;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom:50px
     }
-    .container{
-        background-color:aquamarine;
+
+    input[type=submit]:hover {
+      background-color:#0064D5 ;
     }
-</style>
+         .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border-radius: 0.25rem;
+        border:0px;
+    }
 <div class="container">
     <div class="header">
         <div class="main-header">

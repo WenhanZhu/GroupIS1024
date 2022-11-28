@@ -35,8 +35,6 @@ namespace GroupIS1024
         [JsonProperty("content")]
         public string Content { get; set; }
 
-        [JsonProperty("date")]
-        public Date Date { get; set; }
 
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -77,43 +75,15 @@ namespace GroupIS1024
             DateParseHandling = DateParseHandling.None,
             Converters =
             {
-                DateConverter.Singleton,
+               
                 new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
             },
         };
     }
 
-    internal class DateConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => t == typeof(Date) || t == typeof(Date?);
 
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            if (value == "27 Nov 2022,Sunday")
-            {
-                return Date.The27Nov2022Sunday;
-            }
-            throw new Exception("Cannot unmarshal type Date");
-        }
 
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            if (untypedValue == null)
-            {
-                serializer.Serialize(writer, null);
-                return;
-            }
-            var value = (Date)untypedValue;
-            if (value == Date.The27Nov2022Sunday)
-            {
-                serializer.Serialize(writer, "27 Nov 2022,Sunday");
-                return;
-            }
-            throw new Exception("Cannot marshal type Date");
-        }
 
-        public static readonly DateConverter Singleton = new DateConverter();
-    }
+
+
 }

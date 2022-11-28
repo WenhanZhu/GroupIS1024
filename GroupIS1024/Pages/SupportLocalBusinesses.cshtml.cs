@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
 
 namespace GroupIS1024.Pages
 {
@@ -17,8 +19,17 @@ namespace GroupIS1024.Pages
             {
                 Task<string> readString = result.Content.ReadAsStringAsync();
                 string jsonString = readString.Result;
-                chefauthors = ChefAuthor.FromJson(jsonString);
-
+                JSchema schema = JSchema.Parse(System.IO.File.ReadAllText("chefauthorschema.json"));
+                JArray jsonArray = JArray.Parse(jsonString);
+                IList<string> validationEvents = new List<string>();
+                    if (jsonArray.IsValid(schema, out validationEvents)) { 
+                 chefauthors = ChefAuthor.FromJson(jsonString);
+            } else
+                {
+                    foreach(string evt in validationEvents) {
+                        Console.WriteLine(evt);
+                    }
+                }
             }
 
             ViewData["Chef Authors"] = chefauthors;
