@@ -1,6 +1,6 @@
 # GroupIS1024
 # XML-Project
-#InteractiveFantasyFootball
+#InteractiveFantasyBasketball
 
 
 Ryan Sosinski
@@ -11,57 +11,57 @@ Wenhan Zhu
 
 ###Introduction
 
-When playing fantasy football on current platforms right now, users must interact with their friends on other platforms due to the lack of interactivity on the platform.
-We inted to make a fantasy football site where users can interact on the platform and recieve tweets related to teams/players.
+When playing fantasy basketball on current platforms right now, users can't learn about the sport and can't recieve sports updates.
+We inted to make a fantasy basketball site where users can learn about the league on the platform and recieve sports news updates.
 
 
 
 #### Data Feeds
- - ESPN
- - Twitter
+ - https://www.balldontlie.io/api
+ - https://inshorts.deta.dev/news?category=sports
 
 
 ### Requirement 1 - 
 
 #### Scenario
 
-As a user, I want to be able to select teams and players, so that i can get a customized feed.
+As a user, I want to be able to access information about NBA teams, so that i can learn about the sport and do research when selecting fantasy teams
 
 #### Dependencies
 
-Twitter posts, are available and accessible.
+News feeds, are available and accessible.
 
 #### Examples
 1.1
-Given a user has a certain player for content,
-When the user scrolls their news feed,
-Then tweets related to that player will show in the feed.
+Given a user has a certain player on their team,
+When the user sees the players team,
+Then the user can access more information about that players team.
 
 1.2
 Given a user has selected a certain team for content,
-When the user scrolls their news feed,
-Then tweets related to that team will show in the feed.
+When the user scrolls the page,
+Then the user will be able to see the teams city, Conference and division.
 
 1.3
-Given a user has unselected a certain player for content,
-When the user scrolls their news feed,
-Then tweets related to that player will no longer show in the feed.
+Given a user wants to see the latest sports updates,
+When the user accesses their news feed,
+Then the latest up to date information about the sports world is present to the user.
 
 ### Requirement 2 - User has access to look at players entire career stats.
 
 ##Scenario
 
-As a user, I want to be able to view all historical statistics of all players, so i can get information beyond just the current season.
+As a user, I want to be able to access a players profile, so i can recieve information about their background like years experience and college.
 
 #### Dependencies
 
-ESPN player data is available and accessible.
+API balldontlie api data is available and accessible.
 
 #### Examples
 2.1
-Given a user has accessed the statistics of a player,
+Given a user has accessed the profile of a player,
 When the user is viewing their players profile,
-Then the statistics of the players entire career are shown on the page.
+Then the atheletes university, experience ect. are shown on the page.
 
 ## Scrum Roles
 
