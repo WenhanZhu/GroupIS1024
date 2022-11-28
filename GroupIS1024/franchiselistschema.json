@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/FranchiseListElement"
+  },
+  "definitions": {
+    "FranchiseListElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "abbreviation": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "conference": {
+          "$ref": "#/definitions/Conference"
+        },
+        "division": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "abbreviation",
+        "city",
+        "conference",
+        "division",
+        "full_name",
+        "id",
+        "name"
+      ],
+      "title": "FranchiseListElement"
+    },
+    "Conference": {
+      "type": "string",
+      "enum": [
+        "East",
+        "West"
+      ],
+      "title": "Conference"
+    }
+  }
+}

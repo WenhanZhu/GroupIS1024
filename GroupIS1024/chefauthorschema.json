@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/ChefAuthorElement"
+  },
+  "definitions": {
+    "ChefAuthorElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "favoriteRecipe": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email",
+        "favoriteRecipe",
+        "name",
+        "phone",
+        "title"
+      ],
+      "title": "ChefAuthorElement"
+    }
+  }
+}

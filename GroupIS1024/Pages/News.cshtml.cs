@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
 
 namespace GroupIS1024.Pages
 {
@@ -18,9 +20,9 @@ namespace GroupIS1024.Pages
             {
                 Task<string> readString = result.Content.ReadAsStringAsync();
                 string jsonString = readString.Result;
-                NewsFeed newsfeed = Sport.FromJson(jsonString);
-                sports = newsfeed.Data;
-
+                    NewsFeed newsfeed = Sport.FromJson(jsonString);
+                    sports = newsfeed.Data;
+                
             }
 
             ViewData["Sports"] = sports;
